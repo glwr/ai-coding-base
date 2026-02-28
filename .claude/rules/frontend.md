@@ -1,5 +1,6 @@
 ---
 paths:
+  # Single app
   - "src/components/**/*"
   - "src/app/**/*.tsx"
   - "src/app/**/*.jsx"
@@ -10,6 +11,10 @@ paths:
   - "app/**/*.jsx"
   - "components/**/*"
   - "pages/**/*"
+  # Monorepo (adapt 'web' to your app name)
+  - "apps/web/**/*.tsx"
+  - "apps/web/**/*.jsx"
+  - "packages/ui/**/*"
 ---
 
 # Frontend Development Rules

@@ -63,6 +63,7 @@ For first deployment, guide the user through these setup guides:
 **Performance Check:** See [performance.md](../../../docs/production/performance.md)
 **Database Optimization:** See [database-optimization.md](../../../docs/production/database-optimization.md)
 **Rate Limiting (optional):** See [rate-limiting.md](../../../docs/production/rate-limiting.md)
+**Containerization (if using Docker):** See [containerization.md](../../../docs/production/containerization.md)
 
 ### 6. Post-Deployment Bookkeeping
 - Update feature spec: Add deployment section with production URL and date
@@ -106,6 +107,13 @@ If production is broken:
 - [ ] `features/INDEX.md` updated to Deployed
 - [ ] Git tag created and pushed
 - [ ] User has verified production deployment
+
+### 7. Update Deployment Documentation
+- Update `docs/deployment.md` with:
+  - Infrastructure table (resources, URLs, regions)
+  - CI/CD workflow details
+  - Required secrets and variables
+  - Manual deployment steps for this project
 
 ## Context Updates
 After deployment, update project context:

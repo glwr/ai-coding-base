@@ -18,6 +18,7 @@ _Fill in when starting a new project:_
 
 ## Project Structure
 
+### Single App (default)
 ```
 src/                Source code (structure depends on framework)
 features/           Feature specifications (PROJ-X-name.md)
@@ -29,19 +30,41 @@ context/            Shared project memory (git-versioned)
   stack.md          Tech stack details & infrastructure
 docs/
   PRD.md            Product Requirements Document
+  architecture.md   System architecture overview
+  api.md            API endpoint reference
+  development.md    Local development guide
+  deployment.md     Deployment & infrastructure guide
+  design-system.md  Brand, colors, typography, design tokens
   production/       Production guides (security, performance, etc.)
 ```
 
+### Monorepo (optional)
+_If your project uses a monorepo structure (pnpm workspaces, npm workspaces, Turborepo, Nx):_
+```
+apps/
+  web/              Frontend application
+  api/              Backend / API server
+packages/
+  shared/           Shared types, schemas, utilities
+  ui/               Shared UI component library
+features/           Feature specifications (same as above)
+context/            Shared project memory (same as above)
+docs/               Documentation (same as above)
+```
+
+_When using a monorepo, adapt the path patterns in `.claude/rules/frontend.md` and `.claude/rules/backend.md` to match your actual structure (e.g. `apps/web/src/**` instead of `src/**`)._
+
 ## Development Workflow
 
-1. `/requirements` - Create feature spec from idea
-2. `/architecture` - Design tech architecture (PM-friendly, no code)
-3. `/frontend` - Build UI components
-4. `/backend` - Build APIs, database, access control
-5. `/qa` - Test against acceptance criteria
-6. `/security` - OWASP security audit + vulnerability scan
-7. `/deploy` - Deploy + production-ready checks
-8. `/remember` - Save decisions, patterns, or learnings to project context
+1. `/requirements` - Create feature spec from idea (or initialize new project)
+2. `/architecture project` - Design system-wide architecture (once, after init)
+3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
+4. `/frontend` - Build UI components
+5. `/backend` - Build APIs, database, access control
+6. `/qa` - Test against acceptance criteria
+7. `/security` - OWASP security audit + vulnerability scan
+8. `/deploy` - Deploy + production-ready checks
+9. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 
@@ -52,13 +75,34 @@ All features tracked in `features/INDEX.md`. Every skill reads it at start and u
 - **Feature IDs:** PROJ-1, PROJ-2, etc. (sequential)
 - **Single Responsibility:** One feature per spec file
 
-## Safety Boundaries
+## Permissions
 
-- NEVER modify, delete, or overwrite files outside the current project directory
-- NEVER change system configuration, environment variables outside the project, or global packages
-- NEVER run destructive commands (rm -rf, drop database, force push to main, etc.) without explicit confirmation
-- NEVER install global packages or tools — only project-local dependencies
-- If a task requires tools, packages, or system changes not already present: stop and ask before proceeding
+### Allowed (no confirmation needed)
+
+- Create, edit, delete, rename, and move files within the project
+- Run shell commands that only affect the project directory
+- Install project-local dependencies (npm install, pip install in venv, etc.)
+- Run build processes, linters, formatters, and tests
+- Git operations (commit, branch, merge, rebase, etc.)
+- Start dev servers, open local ports
+- Create/modify configuration files within the project
+- Read files and directories outside the project (read-only)
+
+### Not allowed
+
+- Modify or delete files outside the project directory
+- Install global packages or tools (npm install -g, brew install, apt install, etc.)
+- Modify system-wide configurations (~/.bashrc, ~/.gitconfig, /etc/*, etc.)
+- Run destructive commands (rm -rf, drop database, force push to main) without explicit confirmation
+- Start, stop, or configure system services
+- Change network or firewall settings
+- Set environment variables outside the project
+
+### Rule of thumb
+
+> **Inside the project: everything is allowed. Outside the project: read-only. System-level: nothing.**
+
+If a task requires tools, packages, or system changes not already present: stop and ask before proceeding.
 
 ## Coding Principles
 
@@ -85,6 +129,18 @@ _Fill in when starting a new project:_
 # npm run lint       # Linting
 # npm run test       # Tests
 ```
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| `docs/PRD.md` | Product vision, roadmap, success metrics |
+| `docs/architecture.md` | System architecture, data flows, auth, caching |
+| `docs/api.md` | API endpoint reference |
+| `docs/development.md` | Local development setup, scripts, patterns |
+| `docs/deployment.md` | Production deployment, CI/CD, infrastructure |
+| `docs/design-system.md` | Brand colors, typography, design tokens |
+| `docs/production/*` | Security headers, performance, error tracking, rate limiting, containerization |
 
 ## Product Context
 

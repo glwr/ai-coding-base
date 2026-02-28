@@ -1,5 +1,6 @@
 ---
 paths:
+  # Single app
   - "src/app/api/**/*"
   - "src/lib/db/**/*"
   - "src/server/**/*"
@@ -9,6 +10,11 @@ paths:
   - "prisma/**/*"
   - "drizzle/**/*"
   - "supabase/**/*"
+  # Monorepo (adapt 'api'/'middleware' to your app name)
+  - "apps/api/**/*"
+  - "apps/middleware/**/*"
+  - "packages/shared/**/*"
+  - "packages/db/**/*"
 ---
 
 # Backend Development Rules
