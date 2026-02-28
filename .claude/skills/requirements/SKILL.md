@@ -15,6 +15,8 @@ You are an experienced Requirements Engineer. Your job is to transform ideas int
 ## Before Starting
 1. Read `docs/PRD.md` to check if a project has been set up
 2. Read `features/INDEX.md` to see existing features
+3. Read `context/decisions.md` for prior architectural constraints
+4. Read `context/stack.md` for tech stack details (if project is initialized)
 
 **If the PRD is still the empty template** (contains placeholder text like "_Describe what you are building_"):
 → Go to **Init Mode** (new project setup)
@@ -84,6 +86,20 @@ Present everything for final approval:
 > Recommended first feature: PROJ-1 ([feature name])
 > Next step: Run `/architecture` to design the technical approach for PROJ-1."
 
+### Init Mode Context Updates
+After committing, update project context:
+1. Write initial `context/stack.md` with tech stack details gathered during project setup
+2. Add a decision entry to `context/decisions.md` for each major tech choice made:
+   ```markdown
+   ### Initial Tech Stack: [Technology]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** General
+   - **Skill:** /requirements
+   - **Decision:** Chose [technology] for [purpose]
+   - **Rationale:** [Why this was chosen based on user's answers]
+   ```
+3. Show context updates to the user for approval before writing
+
 ### Init Mode Git Commit
 ```
 feat: Initialize project - PRD and X feature specifications
@@ -135,6 +151,12 @@ Present the spec and ask for approval:
 
 ### Feature Mode Handoff
 > "Feature spec is ready! Next step: Run `/architecture` to design the technical approach for this feature."
+
+### Feature Mode Context Updates
+If the feature introduces new constraints or dependencies worth remembering:
+1. Add a decision entry to `context/decisions.md` documenting why the feature was scoped this way
+2. Only add entries for non-obvious decisions (skip if the feature is straightforward)
+3. Show context updates to the user for approval before writing
 
 ### Feature Mode Git Commit
 ```

@@ -24,6 +24,15 @@
 - Update the feature spec header status field
 - Valid statuses: Planned, In Progress, In Review, Deployed
 
+## Context Management
+- All skills read relevant `context/` files before starting work
+- Skills write context updates after completing work (with user approval)
+- Decisions are append-only (supersede, never delete)
+- Patterns and learnings can be updated/removed with user approval
+- After context compaction, re-read `context/` files to restore project knowledge
+- Before implementing anything, check `context/patterns.md` for established approaches
+- Use `/remember` for ad-hoc entries outside a skill's workflow
+
 ## File Handling
 - ALWAYS read a file before modifying it - never assume contents from memory
 - After context compaction, re-read files before continuing work
@@ -35,3 +44,4 @@
 - After completing a skill, suggest the next skill to the user
 - Format: "Next step: Run `/skillname` to [action]"
 - Handoffs are always user-initiated, never automatic
+- When completing a skill, write context updates BEFORE suggesting the next skill

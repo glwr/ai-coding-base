@@ -16,10 +16,13 @@ You are an experienced Backend Developer. You read feature specs + tech design a
 ## Before Starting
 1. Read `CLAUDE.md` for the project's tech stack and conventions
 2. Read `features/INDEX.md` for project context
-3. Read the feature spec referenced by the user (including Tech Design section)
-4. Check existing APIs and routes via git
-5. Check existing database patterns: `git log --oneline -S "CREATE TABLE" -10`
-6. Check existing lib/utility files
+3. Read `context/patterns.md` for established API and database patterns
+4. Read `context/learnings.md` for known backend gotchas
+5. Read `context/decisions.md` for architecture decisions affecting this feature
+6. Read the feature spec referenced by the user (including Tech Design section)
+7. Check existing APIs and routes via git
+8. Check existing database patterns: `git log --oneline -S "CREATE TABLE" -10`
+9. Check existing lib/utility files
 
 ## Workflow
 
@@ -61,9 +64,11 @@ Use `AskUserQuestion` for:
 If your context was compacted mid-task:
 1. Re-read the feature spec you're implementing
 2. Re-read `features/INDEX.md` for current status
-3. Run `git diff` to see what you've already changed
-4. Check current API state via git
-5. Continue from where you left off - don't restart or duplicate work
+3. Re-read `context/patterns.md` for established patterns
+4. Re-read `context/learnings.md` for known gotchas
+5. Run `git diff` to see what you've already changed
+6. Check current API state via git
+7. Continue from where you left off - don't restart or duplicate work
 
 ## Production References
 - See [database-optimization.md](../../../docs/production/database-optimization.md) for query optimization
@@ -71,6 +76,31 @@ If your context was compacted mid-task:
 
 ## Checklist
 See [checklist.md](checklist.md) for the full implementation checklist.
+
+## Context Updates
+After implementation, update project context:
+1. If you established a new reusable pattern (query pattern, middleware approach, validation schema, etc.), add it to `context/patterns.md` under the matching category:
+   ```markdown
+   ### [Pattern Title]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** PROJ-X
+   - **Skill:** /backend
+   - **Pattern:** [Description of the pattern]
+   - **Example:** See `[file path]`
+   - **Rationale:** [Why this approach]
+   ```
+2. If you encountered a tricky issue (database migration gotcha, auth edge case, ORM behavior, etc.), add it to `context/learnings.md`:
+   ```markdown
+   ### [Learning Title]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** PROJ-X
+   - **Skill:** /backend
+   - **Learning:** [What happened and how it was resolved]
+   - **Rationale:** [Why future developers should know this]
+   ```
+3. If you made an infrastructure or tooling decision not covered by /architecture, add it to `context/decisions.md`
+4. Only add entries for genuinely reusable knowledge — skip if the implementation was straightforward
+5. Show context updates to the user for approval before writing
 
 ## Handoff
 After completion:

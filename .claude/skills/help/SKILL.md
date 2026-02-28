@@ -35,6 +35,11 @@ Read these files to understand where the project stands:
    - Check for API routes (e.g. `ls src/app/api/ 2>/dev/null` or equivalent)
    - Check for component library components (e.g. `ls src/components/ui/ 2>/dev/null`)
 
+5. **Check Context:** Read `context/` files
+   - Do context files exist? → Context system is set up
+   - Are context files still empty templates? → No context captured yet
+   - How many entries in each file? → Report context health
+
 ### Step 2: Determine Next Action
 
 Based on the state analysis, determine what the user should do next:
@@ -74,8 +79,9 @@ Based on the state analysis, determine what the user should do next:
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all 6 skills with brief descriptions
+- "What skills are available?" → List all 7 skills with brief descriptions (include /remember for context management)
 - "How do I add a new feature?" → Explain `/requirements` workflow
+- "How do I save a decision?" → Explain `/remember` workflow
 - "How do I customize this template?" → Point to CLAUDE.md, .claude/rules/, .claude/skills/
 - "What's the project structure?" → Explain the directory layout
 - "How do I deploy?" → Explain `/deploy` workflow and prerequisites

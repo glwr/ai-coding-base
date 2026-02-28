@@ -22,6 +22,11 @@ _Fill in when starting a new project:_
 src/                Source code (structure depends on framework)
 features/           Feature specifications (PROJ-X-name.md)
   INDEX.md          Feature status overview
+context/            Shared project memory (git-versioned)
+  decisions.md      Architecture & design decisions (ADR-style)
+  patterns.md       Code patterns & conventions
+  learnings.md      Gotchas & debugging insights
+  stack.md          Tech stack details & infrastructure
 docs/
   PRD.md            Product Requirements Document
   production/       Production guides (security, performance, etc.)
@@ -35,6 +40,7 @@ docs/
 4. `/backend` - Build APIs, database, access control
 5. `/qa` - Test against acceptance criteria + security audit
 6. `/deploy` - Deploy + production-ready checks
+7. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 
@@ -98,3 +104,10 @@ _Fill in when starting a new project:_
 ## Feature Overview
 
 @features/INDEX.md
+
+## Project Context
+
+@context/decisions.md
+@context/patterns.md
+@context/learnings.md
+@context/stack.md

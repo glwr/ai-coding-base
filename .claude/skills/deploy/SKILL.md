@@ -15,9 +15,11 @@ You are an experienced DevOps Engineer handling deployment, environment setup, a
 ## Before Starting
 1. Read `CLAUDE.md` for the project's tech stack and deployment target
 2. Read `features/INDEX.md` to know what is being deployed
-3. Check QA status in the feature spec
-4. Verify no Critical/High bugs exist in QA results
-5. If QA has not been done, tell the user: "Run `/qa` first before deploying."
+3. Read `context/stack.md` for infrastructure and deployment configuration details
+4. Read `context/learnings.md` for known deployment gotchas
+5. Check QA status in the feature spec
+6. Verify no Critical/High bugs exist in QA results
+7. If QA has not been done, tell the user: "Run `/qa` first before deploying."
 
 ## Workflow
 
@@ -103,6 +105,21 @@ If production is broken:
 - [ ] `features/INDEX.md` updated to Deployed
 - [ ] Git tag created and pushed
 - [ ] User has verified production deployment
+
+## Context Updates
+After deployment, update project context:
+1. Update `context/stack.md` with deployment details (production URL, hosting platform, deploy configuration)
+2. If deployment required non-obvious configuration or workarounds, add to `context/learnings.md`:
+   ```markdown
+   ### [Deployment Learning Title]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** PROJ-X
+   - **Skill:** /deploy
+   - **Learning:** [What was non-obvious about the deployment]
+   - **Rationale:** [Save time on future deployments]
+   ```
+3. If this is the first deployment, add infrastructure decisions to `context/decisions.md` (hosting choice, CI/CD setup, domain configuration)
+4. Show context updates to the user for approval before writing
 
 ## Git Commit
 ```

@@ -22,8 +22,11 @@ NEVER write code or show implementation details:
 ## Before Starting
 1. Read `CLAUDE.md` for the project's tech stack
 2. Read `features/INDEX.md` to understand project context
-3. Check existing components and APIs via git
-4. Read the feature spec the user references
+3. Read `context/decisions.md` for prior architecture decisions
+4. Read `context/patterns.md` for established code patterns
+5. Read `context/stack.md` for detailed tech stack info
+6. Check existing components and APIs via git
+7. Read the feature spec the user references
 
 ## Workflow
 
@@ -97,6 +100,21 @@ After approval, tell the user:
 > "Design is ready! Next step: Run `/frontend` to build the UI components for this feature."
 >
 > If this feature needs backend work, you'll run `/backend` after frontend is done.
+
+## Context Updates
+After committing, update project context:
+1. Add each significant tech decision to `context/decisions.md`:
+   ```markdown
+   ### [Decision Title]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** PROJ-X
+   - **Skill:** /architecture
+   - **Decision:** [What was decided]
+   - **Rationale:** [Why — reference the justification from the tech design]
+   ```
+2. If the design introduces new packages or infrastructure, update `context/stack.md`
+3. Only add entries for genuinely significant decisions — skip trivial choices
+4. Show context updates to the user for approval before writing
 
 ## Git Commit
 ```

@@ -15,10 +15,12 @@ You are an experienced QA Engineer AND Red-Team Pen-Tester. You test features ag
 
 ## Before Starting
 1. Read `features/INDEX.md` for project context
-2. Read the feature spec referenced by the user
-3. Check recently implemented features for regression testing: `git log --oneline --grep="PROJ-" -10`
-4. Check recent bug fixes: `git log --oneline --grep="fix" -10`
-5. Check recently changed files: `git log --name-only -5 --format=""`
+2. Read `context/learnings.md` for known bugs, gotchas, and regression risks
+3. Read `context/patterns.md` for established patterns (to verify implementations follow them)
+4. Read the feature spec referenced by the user
+5. Check recently implemented features for regression testing: `git log --oneline --grep="PROJ-" -10`
+6. Check recent bug fixes: `git log --oneline --grep="fix" -10`
+7. Check recently changed files: `git log --name-only -5 --format=""`
 
 ## Workflow
 
@@ -68,9 +70,10 @@ Ask: "Which bugs should be fixed first?"
 If your context was compacted mid-task:
 1. Re-read the feature spec you're testing
 2. Re-read `features/INDEX.md` for current status
-3. Check if you already added QA results to the feature spec: search for "## QA Test Results"
-4. Run `git diff` to see what you've already documented
-5. Continue testing from where you left off - don't re-test passed criteria
+3. Re-read `context/learnings.md` for known issues
+4. Check if you already added QA results to the feature spec: search for "## QA Test Results"
+5. Run `git diff` to see what you've already documented
+6. Continue testing from where you left off - don't re-test passed criteria
 
 ## Bug Severity Levels
 - **Critical:** Security vulnerabilities, data loss, complete feature failure
@@ -109,6 +112,21 @@ If production-ready:
 
 If bugs found:
 > "Found [N] bugs ([severity breakdown]). The developer needs to fix these before deployment. After fixes, run `/qa` again."
+
+## Context Updates
+After documenting test results, update project context:
+1. For every bug found, add a learning to `context/learnings.md`:
+   ```markdown
+   ### [Bug Title] — [Feature Name]
+   - **Date:** YYYY-MM-DD
+   - **Feature:** PROJ-X
+   - **Skill:** /qa
+   - **Learning:** [What the bug was, root cause if known, and what to watch for]
+   - **Rationale:** Prevent regression in future features
+   ```
+2. If a pattern violation caused a bug, note it in the relevant pattern entry in `context/patterns.md`
+3. If a security issue was found, add it to `context/learnings.md` with **[IMPORTANT]** prefix in the title
+4. Show context updates to the user for approval before writing
 
 ## Git Commit
 ```
