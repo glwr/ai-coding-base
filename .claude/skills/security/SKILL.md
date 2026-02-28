@@ -1,0 +1,99 @@
+---
+name: security
+description: Run a comprehensive security audit on recent changes or a specific feature. Checks OWASP Top 10, secrets, dependencies, and access control.
+argument-hint: [feature-spec-path or "all" for full audit]
+user-invocable: true
+context: fork
+agent: security-reviewer
+model: opus
+---
+
+# Security Audit
+
+Run a comprehensive security review of the codebase.
+
+## Before Starting
+1. Read `features/INDEX.md` for project context
+2. Read `context/learnings.md` for known security issues
+3. Read `.claude/rules/security.md` for project security rules
+
+## Determine Scope
+
+If arguments specify a feature (e.g., `features/PROJ-X-name.md`):
+- Read the feature spec
+- Focus review on files related to that feature
+- Use `git log --oneline --grep="PROJ-X" --name-only` to find relevant files
+
+If arguments say "all" or no arguments:
+- Review all source files: `git ls-files src/`
+- Focus on recent changes: `git diff HEAD~5 --name-only`
+
+## Audit Phases
+
+### Phase 1: Static Analysis
+1. Search for hardcoded secrets:
+   ```bash
+   grep -rn "password\|secret\|api_key\|token\|apiKey\|API_KEY\|PRIVATE_KEY" src/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" | grep -v "node_modules\|.env.example\|test\|spec\|mock"
+   ```
+2. Check for dangerous patterns:
+   ```bash
+   grep -rn "dangerouslySetInnerHTML\|eval(\|innerHTML\|document.write\|exec(\|spawn(" src/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx"
+   ```
+3. Check for unparameterized queries:
+   ```bash
+   grep -rn "query(\`\|query('" src/ --include="*.ts" --include="*.js"
+   ```
+
+### Phase 2: Authentication & Authorization Review
+1. Find all API routes: `git ls-files src/ | grep -i "api\|route\|endpoint"`
+2. For each route, verify:
+   - Authentication check exists (session/token verification)
+   - Authorization check exists (ownership/role verification)
+   - Input validation exists (schema validation on write endpoints)
+   - Rate limiting is configured (on auth endpoints)
+
+### Phase 3: Dependency Audit
+1. Run dependency vulnerability check:
+   ```bash
+   npm audit 2>/dev/null || yarn audit 2>/dev/null || pnpm audit 2>/dev/null || echo "No package manager audit available"
+   ```
+2. Check for overly permissive versions in package.json
+
+### Phase 4: Configuration Review
+1. Check `.env.local.example` exists and documents all required env vars
+2. Verify no secrets in committed files: `git log --all -p -- "*.env" "*.env.*" | head -50`
+3. Check security headers configuration exists
+4. Verify CORS configuration if applicable
+
+### Phase 5: Data Flow Analysis
+For each user-facing endpoint:
+1. Trace input from request to database
+2. Verify sanitization at each step
+3. Check output encoding before sending to client
+4. Verify error responses don't leak sensitive information
+
+## Output
+
+Present findings using the security-reviewer agent's output format, then add:
+
+### Action Items
+A prioritized list of fixes, grouped by severity.
+
+### Context Updates
+If findings are relevant for future development, draft entries for `context/learnings.md`:
+```markdown
+### [IMPORTANT] [Security Finding Title]
+- **Date:** YYYY-MM-DD
+- **Feature:** PROJ-X (or "General")
+- **Skill:** /security
+- **Learning:** [What was found and what to watch for]
+- **Rationale:** Prevent this vulnerability pattern in future features
+```
+
+Show context updates to the user for approval before writing.
+
+## Handoff
+After completion:
+> "Security audit complete. [X findings: Y critical, Z high, ...]"
+> If issues found: "Fix these issues, then run `/qa` to verify."
+> If clear: "No security issues found. Ready for `/deploy`."

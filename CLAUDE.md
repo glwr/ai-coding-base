@@ -38,9 +38,10 @@ docs/
 2. `/architecture` - Design tech architecture (PM-friendly, no code)
 3. `/frontend` - Build UI components
 4. `/backend` - Build APIs, database, access control
-5. `/qa` - Test against acceptance criteria + security audit
-6. `/deploy` - Deploy + production-ready checks
-7. `/remember` - Save decisions, patterns, or learnings to project context
+5. `/qa` - Test against acceptance criteria
+6. `/security` - OWASP security audit + vulnerability scan
+7. `/deploy` - Deploy + production-ready checks
+8. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 
@@ -67,8 +68,12 @@ All features tracked in `features/INDEX.md`. Every skill reads it at start and u
 
 ## Output Language
 
-- All code, comments, commit messages, and documentation: English
-- Conversation with me: German is fine
+- IMPORTANT: ALL written output must be in English — no exceptions:
+  - Code, comments, variable names
+  - Commit messages, PR descriptions
+  - Documentation, feature specs, context entries, PRD
+  - Error messages, log messages, UI text
+- Conversation with the user may be in any language the user prefers
 
 ## Build & Test Commands
 

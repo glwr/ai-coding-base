@@ -64,7 +64,7 @@ Based on the state analysis, determine what the user should do next:
 
 **If features are implemented but no QA:**
 > Feature PROJ-X is implemented and ready for testing.
-> Run `/qa` to test `features/PROJ-X-name.md` against its acceptance criteria.
+> Run `/security` to audit `features/PROJ-X-name.md` for vulnerabilities, then `/qa` to test against acceptance criteria.
 
 **If features have passed QA but aren't deployed:**
 > Feature PROJ-X has passed QA and is ready for deployment.
@@ -79,9 +79,10 @@ Based on the state analysis, determine what the user should do next:
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all 7 skills with brief descriptions (include /remember for context management)
+- "What skills are available?" → List all 8 skills with brief descriptions (include /remember for context management, /security for audits)
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I save a decision?" → Explain `/remember` workflow
+- "How do I run a security audit?" → Explain `/security` workflow (scope options, OWASP checks, findings format)
 - "How do I customize this template?" → Point to CLAUDE.md, .claude/rules/, .claude/skills/
 - "What's the project structure?" → Explain the directory layout
 - "How do I deploy?" → Explain `/deploy` workflow and prerequisites

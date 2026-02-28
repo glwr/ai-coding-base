@@ -7,6 +7,10 @@
 - One feature per spec file (Single Responsibility)
 - Never combine multiple independent functionalities in one spec
 
+## Language
+- ALL written output must be in English: code, comments, commits, docs, specs, context entries, UI text
+- No exceptions — even if the user writes in another language, all artifacts are English
+
 ## Git Conventions
 - Commit format: `type(PROJ-X): description`
 - Types: feat, fix, refactor, test, docs, deploy, chore
