@@ -1,3 +1,16 @@
+---
+paths:
+  - "src/app/api/**/*"
+  - "src/lib/db/**/*"
+  - "src/server/**/*"
+  - "api/**/*"
+  - "server/**/*"
+  - "db/**/*"
+  - "prisma/**/*"
+  - "drizzle/**/*"
+  - "supabase/**/*"
+---
+
 # Backend Development Rules
 
 ## Database
@@ -19,7 +32,5 @@
 - Always handle errors from database responses
 
 ## Security
-- Never hardcode secrets in source code
-- Use environment variables for all credentials
-- Validate and sanitize all user input
 - Use parameterized queries to prevent SQL injection
+- See `.claude/rules/security.md` for full security rules

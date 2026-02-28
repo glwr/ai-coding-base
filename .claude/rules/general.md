@@ -32,6 +32,9 @@
 - After context compaction, re-read `context/` files to restore project knowledge
 - Before implementing anything, check `context/patterns.md` for established approaches
 - Use `/remember` for ad-hoc entries outside a skill's workflow
+- When context files exceed 150 lines, suggest `/remember review` to archive stale entries
+- Superseded decisions are moved to `context/archive/`
+- Resolved learnings (with regression tests in place) can be removed
 
 ## File Handling
 - ALWAYS read a file before modifying it - never assume contents from memory

@@ -49,10 +49,7 @@ All features tracked in `features/INDEX.md`. Every skill reads it at start and u
 ## Key Conventions
 
 - **Feature IDs:** PROJ-1, PROJ-2, etc. (sequential)
-- **Commits:** `feat(PROJ-X): description`, `fix(PROJ-X): description`
 - **Single Responsibility:** One feature per spec file
-- **Component library first:** NEVER create custom versions of components that exist in the project's component library
-- **Human-in-the-loop:** All workflows have user approval checkpoints
 
 ## Safety Boundaries
 
@@ -64,22 +61,9 @@ All features tracked in `features/INDEX.md`. Every skill reads it at start and u
 
 ## Coding Principles
 
-- Follow existing project conventions even if you'd do it differently
 - Use only dependencies already in the project. If a new dependency is needed: ask first, explain why, and suggest alternatives
-- Prefer simple, readable solutions over clever ones
 - Don't refactor unrelated code while working on a task — stay focused
-- Write self-documenting code. Add comments only for WHY, not WHAT
-- Handle errors explicitly — no swallowed exceptions, no empty catch blocks
 - When fixing bugs: fix the root cause, not the symptom. Add a regression test
-- When unsure about intent: ask instead of assuming
-
-## Communication
-
-- Be direct. Lead with the answer or action, then explain if needed
-- If something is unclear or ambiguous: ask one focused question, don't guess
-- If a task is too large for one pass: propose a breakdown before starting
-- If you made a mistake: say so, explain what went wrong, and fix it
-- When blocked or unsure about an approach: say so early. Don't spend tokens going in circles
 
 ## Output Language
 
@@ -107,7 +91,4 @@ _Fill in when starting a new project:_
 
 ## Project Context
 
-@context/decisions.md
-@context/patterns.md
-@context/learnings.md
-@context/stack.md
+Context files in `context/` (decisions, patterns, learnings, stack) are read on demand by skills — not loaded here to save tokens. Use `/remember` to manage them.

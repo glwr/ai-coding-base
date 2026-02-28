@@ -1,3 +1,17 @@
+---
+paths:
+  - "src/components/**/*"
+  - "src/app/**/*.tsx"
+  - "src/app/**/*.jsx"
+  - "src/pages/**/*"
+  - "src/hooks/**/*"
+  - "src/styles/**/*"
+  - "app/**/*.tsx"
+  - "app/**/*.jsx"
+  - "components/**/*"
+  - "pages/**/*"
+---
+
 # Frontend Development Rules
 
 ## Component Library First (MANDATORY)

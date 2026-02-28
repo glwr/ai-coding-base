@@ -77,15 +77,24 @@ User wants to review and clean up context. Examples:
 
 **Workflow:**
 1. Read the specified file (or all files if none specified)
-2. Present a summary:
+2. Check file sizes: `wc -l context/*.md`
+3. Present a summary:
    - Total entries per file
+   - Lines per file (flag files >150 lines as needing cleanup)
    - Entries by feature
    - Entries by date range
-3. Ask if the user wants to:
+4. Ask if the user wants to:
    - Mark any decisions as superseded
    - Update outdated patterns
    - Remove resolved learnings
-4. Apply changes only after user approval
+   - **Archive stale entries** (move to `context/archive/`)
+5. Apply changes only after user approval
+
+**Archiving (when files exceed 150 lines):**
+- Superseded decisions → move to `context/archive/decisions-archive.md`
+- Resolved learnings (bug fixed + regression test exists) → move to `context/archive/learnings-archive.md`
+- Outdated patterns (replaced by newer patterns) → move to `context/archive/patterns-archive.md`
+- Archive files use the same entry format, prefixed with archive date
 
 ## Entry Format Rules
 - Keep titles short (max 10 words)
