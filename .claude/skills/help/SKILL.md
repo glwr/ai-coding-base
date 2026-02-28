@@ -76,7 +76,7 @@ If the user asked a specific question (via arguments), answer it in the context 
 
 - "What skills are available?" → List all 6 skills with brief descriptions
 - "How do I add a new feature?" → Explain `/requirements` workflow
-- "How do I customize this template?" → Point to CLAUDE.md, rules/, skills/
+- "How do I customize this template?" → Point to CLAUDE.md, .claude/rules/, .claude/skills/
 - "What's the project structure?" → Explain the directory layout
 - "How do I deploy?" → Explain `/deploy` workflow and prerequisites
 

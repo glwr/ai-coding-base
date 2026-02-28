@@ -55,11 +55,11 @@ Guide the user through setting up their deployment platform:
 
 For first deployment, guide the user through these setup guides:
 
-**Error Tracking:** See [error-tracking.md](../../docs/production/error-tracking.md)
-**Security Headers:** See [security-headers.md](../../docs/production/security-headers.md)
-**Performance Check:** See [performance.md](../../docs/production/performance.md)
-**Database Optimization:** See [database-optimization.md](../../docs/production/database-optimization.md)
-**Rate Limiting (optional):** See [rate-limiting.md](../../docs/production/rate-limiting.md)
+**Error Tracking:** See [error-tracking.md](../../../docs/production/error-tracking.md)
+**Security Headers:** See [security-headers.md](../../../docs/production/security-headers.md)
+**Performance Check:** See [performance.md](../../../docs/production/performance.md)
+**Database Optimization:** See [database-optimization.md](../../../docs/production/database-optimization.md)
+**Rate Limiting (optional):** See [rate-limiting.md](../../../docs/production/rate-limiting.md)
 
 ### 6. Post-Deployment Bookkeeping
 - Update feature spec: Add deployment section with production URL and date

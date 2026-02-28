@@ -66,8 +66,8 @@ If your context was compacted mid-task:
 5. Continue from where you left off - don't restart or duplicate work
 
 ## Production References
-- See [database-optimization.md](../../docs/production/database-optimization.md) for query optimization
-- See [rate-limiting.md](../../docs/production/rate-limiting.md) for rate limiting setup
+- See [database-optimization.md](../../../docs/production/database-optimization.md) for query optimization
+- See [rate-limiting.md](../../../docs/production/rate-limiting.md) for rate limiting setup
 
 ## Checklist
 See [checklist.md](checklist.md) for the full implementation checklist.
