@@ -1,40 +1,40 @@
-# AI Coding Starter Kit
+# AI Coding Base
 
-> A Next.js template with an AI-powered development workflow using specialized skills for Requirements, Architecture, Frontend, Backend, QA, and Deployment.
+> A workflow template with an AI-powered development process using specialized skills for Requirements, Architecture, Frontend, Backend, QA, and Deployment. Tech-agnostic — define your stack per project.
 
 ## Tech Stack
 
-- **Framework:** Next.js 16 (App Router), TypeScript
-- **Styling:** Tailwind CSS + shadcn/ui (copy-paste components)
-- **Backend:** Supabase (PostgreSQL + Auth + Storage) - optional
-- **Deployment:** Vercel
-- **Validation:** Zod + react-hook-form
-- **State:** React useState / Context API
+_Fill in when starting a new project:_
+
+- **Framework:** _TBD_
+- **Language:** _TBD_
+- **Styling:** _TBD_
+- **Component Library:** _TBD_
+- **Backend/DB:** _TBD_
+- **Auth:** _TBD_
+- **Deployment:** _TBD_
+- **Validation:** _TBD_
+- **State Management:** _TBD_
 
 ## Project Structure
 
 ```
-src/
-  app/              Pages (Next.js App Router)
-  components/
-    ui/             shadcn/ui components (NEVER recreate these)
-  hooks/            Custom React hooks
-  lib/              Utilities (supabase.ts, utils.ts)
+src/                Source code (structure depends on framework)
 features/           Feature specifications (PROJ-X-name.md)
   INDEX.md          Feature status overview
 docs/
   PRD.md            Product Requirements Document
-  production/       Production guides (Sentry, security, performance)
+  production/       Production guides (security, performance, etc.)
 ```
 
 ## Development Workflow
 
 1. `/requirements` - Create feature spec from idea
 2. `/architecture` - Design tech architecture (PM-friendly, no code)
-3. `/frontend` - Build UI components (shadcn/ui first!)
-4. `/backend` - Build APIs, database, RLS policies
+3. `/frontend` - Build UI components
+4. `/backend` - Build APIs, database, access control
 5. `/qa` - Test against acceptance criteria + security audit
-6. `/deploy` - Deploy to Vercel + production-ready checks
+6. `/deploy` - Deploy + production-ready checks
 
 ## Feature Tracking
 
@@ -45,16 +45,50 @@ All features tracked in `features/INDEX.md`. Every skill reads it at start and u
 - **Feature IDs:** PROJ-1, PROJ-2, etc. (sequential)
 - **Commits:** `feat(PROJ-X): description`, `fix(PROJ-X): description`
 - **Single Responsibility:** One feature per spec file
-- **shadcn/ui first:** NEVER create custom versions of installed shadcn components
+- **Component library first:** NEVER create custom versions of components that exist in the project's component library
 - **Human-in-the-loop:** All workflows have user approval checkpoints
+
+## Safety Boundaries
+
+- NEVER modify, delete, or overwrite files outside the current project directory
+- NEVER change system configuration, environment variables outside the project, or global packages
+- NEVER run destructive commands (rm -rf, drop database, force push to main, etc.) without explicit confirmation
+- NEVER install global packages or tools — only project-local dependencies
+- If a task requires tools, packages, or system changes not already present: stop and ask before proceeding
+
+## Coding Principles
+
+- Follow existing project conventions even if you'd do it differently
+- Use only dependencies already in the project. If a new dependency is needed: ask first, explain why, and suggest alternatives
+- Prefer simple, readable solutions over clever ones
+- Don't refactor unrelated code while working on a task — stay focused
+- Write self-documenting code. Add comments only for WHY, not WHAT
+- Handle errors explicitly — no swallowed exceptions, no empty catch blocks
+- When fixing bugs: fix the root cause, not the symptom. Add a regression test
+- When unsure about intent: ask instead of assuming
+
+## Communication
+
+- Be direct. Lead with the answer or action, then explain if needed
+- If something is unclear or ambiguous: ask one focused question, don't guess
+- If a task is too large for one pass: propose a breakdown before starting
+- If you made a mistake: say so, explain what went wrong, and fix it
+- When blocked or unsure about an approach: say so early. Don't spend tokens going in circles
+
+## Output Language
+
+- All code, comments, commit messages, and documentation: English
+- Conversation with me: German is fine
 
 ## Build & Test Commands
 
+_Fill in when starting a new project:_
+
 ```bash
-npm run dev        # Development server (localhost:3000)
-npm run build      # Production build
-npm run lint       # ESLint
-npm run start      # Production server
+# npm run dev        # Development server
+# npm run build      # Production build
+# npm run lint       # Linting
+# npm run test       # Tests
 ```
 
 ## Product Context

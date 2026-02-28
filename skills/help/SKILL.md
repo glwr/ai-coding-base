@@ -31,9 +31,9 @@ Read these files to understand where the project stands:
    - Deployment section exists (added by /deploy)
 
 4. **Check Codebase:** Quick scan of what's been built
-   - `ls src/components/*.tsx 2>/dev/null` → Custom components
-   - `ls src/app/api/ 2>/dev/null` → API routes
-   - `ls src/components/ui/` → Installed shadcn components
+   - Check for custom components (e.g. `ls src/components/ 2>/dev/null`)
+   - Check for API routes (e.g. `ls src/app/api/ 2>/dev/null` or equivalent)
+   - Check for component library components (e.g. `ls src/components/ui/ 2>/dev/null`)
 
 ### Step 2: Determine Next Action
 

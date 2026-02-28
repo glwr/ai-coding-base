@@ -2,13 +2,13 @@
 
 Before marking frontend as complete:
 
-## shadcn/ui
-- [ ] Checked shadcn/ui for EVERY UI component needed
-- [ ] No custom duplicates of shadcn components created
-- [ ] Missing shadcn components installed via `npx shadcn@latest add`
+## Component Library
+- [ ] Checked the project's component library for EVERY UI component needed
+- [ ] No custom duplicates of library components created
+- [ ] Missing components installed via the library's CLI or copy-paste method
 
 ## Existing Code
-- [ ] Checked existing project components via `git ls-files src/components/`
+- [ ] Checked existing project components via git
 - [ ] Reused existing components where possible
 
 ## Design
@@ -17,19 +17,19 @@ Before marking frontend as complete:
 
 ## Implementation
 - [ ] All planned components implemented
-- [ ] All components use Tailwind CSS (no inline styles, no CSS modules)
+- [ ] All components use the project's CSS approach (no mixing of styling methods)
 - [ ] Loading states implemented (spinner/skeleton during data fetches)
 - [ ] Error states implemented (user-friendly error messages)
 - [ ] Empty states implemented ("No data yet" messages)
 
 ## Quality
-- [ ] Responsive: Mobile (375px), Tablet (768px), Desktop (1440px)
+- [ ] Responsive: Mobile, Tablet, Desktop
 - [ ] Accessibility: Semantic HTML, ARIA labels, keyboard navigation
-- [ ] TypeScript: No errors (`npm run build` passes)
-- [ ] ESLint: No warnings (`npm run lint`)
+- [ ] TypeScript: No errors (build passes)
+- [ ] Linting: No warnings (lint passes)
 
 ## Verification (run before marking complete)
-- [ ] `npm run build` passes without errors
+- [ ] Build passes without errors
 - [ ] All acceptance criteria from feature spec addressed in UI
 - [ ] `features/INDEX.md` status updated to "In Progress"
 

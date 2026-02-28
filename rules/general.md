@@ -11,8 +11,8 @@
 - Commit format: `type(PROJ-X): description`
 - Types: feat, fix, refactor, test, docs, deploy, chore
 - Check existing features before creating new ones: `ls features/ | grep PROJ-`
-- Check existing components before building: `git ls-files src/components/`
-- Check existing APIs before building: `git ls-files src/app/api/`
+- Check existing components before building (e.g. `git ls-files src/components/`)
+- Check existing APIs before building (e.g. `git ls-files src/app/api/` or equivalent)
 
 ## Human-in-the-Loop
 - Always ask for user approval before finalizing deliverables

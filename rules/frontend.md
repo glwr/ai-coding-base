@@ -1,26 +1,20 @@
 # Frontend Development Rules
 
-## shadcn/ui First (MANDATORY)
-- Before creating ANY UI component, check if shadcn/ui has it: `ls src/components/ui/`
-- NEVER create custom implementations of: Button, Input, Select, Checkbox, Switch, Dialog, Modal, Alert, Toast, Table, Tabs, Card, Badge, Dropdown, Popover, Tooltip, Navigation, Sidebar, Breadcrumb
-- If a shadcn component is missing, install it: `npx shadcn@latest add <name> --yes`
-- Custom components are ONLY for business-specific compositions that internally use shadcn primitives
-
-## Import Pattern
-```tsx
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-```
+## Component Library First (MANDATORY)
+- Before creating ANY UI component, check if the project's component library already has it
+- NEVER create custom implementations of standard UI elements (buttons, inputs, selects, dialogs, modals, alerts, toasts, tables, tabs, cards, badges, dropdowns, tooltips, navigation, etc.)
+- If a component is missing from the library, install it using the library's CLI or copy-paste method
+- Custom components are ONLY for business-specific compositions that internally use library primitives
 
 ## Component Standards
-- Use Tailwind CSS exclusively (no inline styles, no CSS modules)
-- All components must be responsive (mobile 375px, tablet 768px, desktop 1440px)
+- Use the project's CSS approach exclusively (no mixing of styling methods)
+- All components must be responsive (mobile, tablet, desktop)
 - Implement loading states, error states, and empty states
 - Use semantic HTML and ARIA labels for accessibility
 - Keep components small and focused
 - Use TypeScript interfaces for all props
 
 ## Auth Best Practices
-- Use `window.location.href` for post-login redirect (not `router.push`)
-- Always verify `data.session` exists before redirecting
+- Use full-page navigation for post-login redirects when needed (avoids stale state)
+- Always verify session exists before redirecting
 - Always reset loading state in all code paths (success, error, finally)

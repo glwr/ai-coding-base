@@ -1,43 +1,36 @@
-# Error Tracking Setup (Sentry)
+# Error Tracking
 
 Track production errors automatically so you know about issues before your users report them.
 
-## Setup (5 minutes)
+## What You Need
 
-### 1. Create Sentry Account
-- Go to [sentry.io](https://sentry.io) (free tier available for small apps)
-- Create a new project and select "Next.js"
+An error tracking service should provide:
+- **Automatic error capture** (client-side + server-side)
+- **Stack traces with source maps** (readable error locations)
+- **Error grouping and deduplication** (don't get 1000 alerts for the same bug)
+- **Alerts** (email, Slack, etc. for new errors)
+- **Performance monitoring** (optional but useful)
 
-### 2. Install Next.js Integration
-```bash
-npx @sentry/wizard@latest -i nextjs
-```
-This automatically:
-- Installs `@sentry/nextjs`
-- Creates `sentry.client.config.ts` and `sentry.server.config.ts`
-- Updates `next.config.ts` with Sentry webpack plugin
+## Popular Options
 
-### 3. Add Environment Variables
-Add to `.env.local` (local) and Vercel Dashboard (production):
-```bash
-SENTRY_DSN=https://xxx@xxx.ingest.sentry.io/xxx
-NEXT_PUBLIC_SENTRY_DSN=https://xxx@xxx.ingest.sentry.io/xxx
-SENTRY_AUTH_TOKEN=sntrys_xxx  # For source maps upload
-```
+| Service | Free Tier | Notes |
+|---------|-----------|-------|
+| Sentry | 5k errors/month | Most popular, great integrations |
+| LogRocket | 1k sessions/month | Session replay + error tracking |
+| Bugsnag | 7.5k events/month | Good for mobile + web |
+| Platform built-in | Varies | Some deployment platforms include basic monitoring |
 
-### 4. Verify Setup
-Trigger a test error and check Sentry Dashboard:
-```typescript
-// Temporary test - remove after verification
-throw new Error("Sentry test error")
-```
+## Setup Steps (General)
 
-## What You Get
-- Automatic error capture (client + server)
-- Stack traces with source maps
-- Error grouping and deduplication
-- Email alerts for new errors
-- Performance monitoring (optional)
+1. **Create account** on chosen service
+2. **Install SDK** for your framework (most services have framework-specific packages)
+3. **Add environment variables** for the service's DSN/API key (to `.env.local` and deployment platform)
+4. **Verify setup** by triggering a test error and checking the dashboard
+5. **Configure alerts** for new and recurring errors
 
-## Alternative
-**Vercel Error Tracking** - Built-in, simpler, but fewer features. Available in Vercel Dashboard under "Monitoring".
+## What to Look For
+
+- Does it support your framework out of the box?
+- Does it support source maps for readable stack traces?
+- Is the free tier sufficient for your scale?
+- Does it integrate with your team's communication tools (Slack, email)?

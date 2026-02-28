@@ -11,57 +11,26 @@
 ## Common Performance Issues
 
 ### Unoptimized Images
-```tsx
-// Bad - unoptimized, no lazy loading
-<img src="/large-image.jpg" />
-
-// Good - Next.js Image component
-import Image from 'next/image'
-<Image src="/large-image.jpg" width={800} height={600} alt="Description" />
-```
-Next.js Image automatically: resizes, lazy-loads, serves WebP format.
+- Use your framework's image optimization component if available
+- Serve images in modern formats (WebP, AVIF)
+- Lazy-load images below the fold
+- Specify explicit width/height to prevent layout shifts
 
 ### Large JavaScript Bundle
-Use dynamic imports for heavy components that aren't needed on initial load:
-```tsx
-import dynamic from 'next/dynamic'
-
-const HeavyChart = dynamic(() => import('./HeavyChart'), {
-  loading: () => <p>Loading chart...</p>,
-})
-```
+Use code splitting and dynamic/lazy imports for heavy components that aren't needed on initial load. Most modern frameworks support this out of the box.
 
 ### Missing Loading States
-Always show feedback during data fetching:
-```tsx
-// Use shadcn Skeleton component
-import { Skeleton } from "@/components/ui/skeleton"
-
-if (isLoading) return <Skeleton className="h-12 w-full" />
-```
+Always show feedback during data fetching — use skeleton components, spinners, or progress indicators from your component library.
 
 ### No Caching Strategy
-Cache slow database queries with `unstable_cache`:
-```typescript
-import { unstable_cache } from 'next/cache'
-
-export const getStats = unstable_cache(
-  async () => {
-    const { data } = await supabase.from('stats').select('*')
-    return data
-  },
-  ['dashboard-stats'],
-  { revalidate: 3600 } // Refresh every hour
-)
-```
+Cache slow database queries and rarely-changing data using your framework's caching mechanism. See [database-optimization.md](database-optimization.md) for details.
 
 ## Quick Wins Checklist
-- [ ] All images use `next/image` component
-- [ ] Heavy components use dynamic imports
+- [ ] Images optimized (modern formats, lazy loading, explicit dimensions)
+- [ ] Heavy components use code splitting / dynamic imports
 - [ ] Loading states show skeleton/spinner
-- [ ] Fonts loaded with `next/font`
-- [ ] No unnecessary client-side JavaScript (`"use client"` only when needed)
+- [ ] Fonts loaded efficiently (preload, swap, or framework font optimization)
+- [ ] Minimal client-side JavaScript (server-render where possible)
 
 ## Automated Monitoring
-- **Vercel Analytics** - Automatic on Pro plan, shows Core Web Vitals
-- **Vercel Speed Insights** - Real user performance data
+Consider using your deployment platform's built-in analytics or a dedicated performance monitoring service (e.g. Core Web Vitals tracking, real user monitoring).

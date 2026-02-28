@@ -34,7 +34,7 @@ Ask the user interactive questions to clarify the big picture:
 - Who are the primary target users?
 - What are the must-have features for MVP vs. nice-to-have?
 - Are there existing tools/competitors? What's different here?
-- Is a backend needed? (User accounts, data sync, multi-user)
+- Is a backend needed? (User accounts, data sync across devices, multi-user)
 - What are the constraints? (Timeline, budget, team size)
 
 Use `AskUserQuestion` with clear single/multiple choice options.
@@ -100,9 +100,8 @@ feat: Initialize project - PRD and X feature specifications
 Use this mode when the project already has a PRD and the user wants to add a new feature.
 
 ### Phase 1: Understand the Feature
-1. Check existing components: `git ls-files src/components/`
-2. Check existing APIs: `git ls-files src/app/api/`
-3. Ensure you are not duplicating an existing feature
+1. Check existing components and APIs via git to avoid duplication
+2. Ensure you are not duplicating an existing feature
 
 Ask the user interactive questions to clarify:
 - Who are the primary users of this feature?

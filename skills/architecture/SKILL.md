@@ -20,9 +20,9 @@ NEVER write code or show implementation details:
 - Focus: WHAT gets built and WHY, not HOW in detail
 
 ## Before Starting
-1. Read `features/INDEX.md` to understand project context
-2. Check existing components: `git ls-files src/components/`
-3. Check existing APIs: `git ls-files src/app/api/`
+1. Read `CLAUDE.md` for the project's tech stack
+2. Read `features/INDEX.md` to understand project context
+3. Check existing components and APIs via git
 4. Read the feature spec the user references
 
 ## Workflow
@@ -35,7 +35,7 @@ NEVER write code or show implementation details:
 ### 2. Ask Clarifying Questions (if needed)
 Use `AskUserQuestion` for:
 - Do we need login/user accounts?
-- Should data sync across devices? (localStorage vs database)
+- Should data sync across devices? (client-side storage vs server-side database)
 - Are there multiple user roles?
 - Any third-party integrations?
 
@@ -63,7 +63,7 @@ Each task has:
 - Status (To Do or Done)
 - Created timestamp
 
-Stored in: Browser localStorage (no server needed)
+Stored in: Client-side storage (no server needed)
 ```
 
 #### C) Tech Decisions (justified for PM)
@@ -85,7 +85,7 @@ Add a "Tech Design (Solution Architect)" section to `/features/PROJ-X.md`
 - [ ] Feature spec read and understood
 - [ ] Component structure documented (visual tree, PM-readable)
 - [ ] Data model described (plain language, no code)
-- [ ] Backend need clarified (localStorage vs database)
+- [ ] Backend need clarified (client-side storage vs database)
 - [ ] Tech decisions justified (WHY, not HOW)
 - [ ] Dependencies listed
 - [ ] Design added to feature spec file

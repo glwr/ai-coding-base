@@ -7,86 +7,15 @@ Prevent abuse, DDoS attacks, and excessive API usage.
 - **Production with users:** Recommended on auth endpoints and public APIs
 - **Public-facing APIs:** Required
 
-## Setup with Upstash Redis
+## How Rate Limiting Works
 
-### 1. Install Dependencies
-```bash
-npm install @upstash/ratelimit @upstash/redis
-```
+Rate limiting restricts the number of requests a client can make within a time window. When the limit is exceeded, the server returns HTTP 429 (Too Many Requests).
 
-### 2. Create Upstash Account
-- Go to [upstash.com](https://upstash.com) (free tier: 10k requests/day)
-- Create a Redis database
-- Copy REST URL and token
-
-### 3. Add Environment Variables
-```bash
-# .env.local
-UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
-UPSTASH_REDIS_REST_TOKEN=xxx
-```
-
-### 4. Create Rate Limiter
-```typescript
-// src/lib/rate-limit.ts
-import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
-
-export const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, '10 s'), // 10 requests per 10 seconds
-})
-```
-
-### 5. Use in API Routes
-```typescript
-// src/app/api/example/route.ts
-import { ratelimit } from '@/lib/rate-limit'
-import { NextRequest, NextResponse } from 'next/server'
-
-export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
-  const { success, limit, remaining } = await ratelimit.limit(ip)
-
-  if (!success) {
-    return NextResponse.json(
-      { error: 'Too many requests' },
-      {
-        status: 429,
-        headers: {
-          'X-RateLimit-Limit': limit.toString(),
-          'X-RateLimit-Remaining': remaining.toString(),
-        },
-      }
-    )
-  }
-
-  // Process request normally...
-}
-```
-
-### 6. Use in Middleware (Global)
-```typescript
-// middleware.ts
-import { ratelimit } from '@/lib/rate-limit'
-import { NextRequest, NextResponse } from 'next/server'
-
-export async function middleware(request: NextRequest) {
-  // Only rate limit API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
-    const { success } = await ratelimit.limit(ip)
-
-    if (!success) {
-      return NextResponse.json({ error: 'Too Many Requests' }, { status: 429 })
-    }
-  }
-}
-
-export const config = {
-  matcher: '/api/:path*',
-}
-```
+### Key Concepts
+- **Identifier:** What to rate limit by (IP address, user ID, API key)
+- **Window:** Time period (e.g. 10 seconds, 1 minute)
+- **Limit:** Max requests per window
+- **Algorithm:** Fixed window, sliding window, or token bucket
 
 ## Recommended Limits
 
@@ -97,5 +26,20 @@ export const config = {
 | General API | 30 requests | 10 seconds |
 | File Upload | 5 requests | 1 minute |
 
-## Alternative
-**Vercel Edge Config** - Simpler but less flexible. Built into Vercel, no external service needed.
+## Implementation Options
+
+### In-Memory (Simple, Single Server)
+Use an in-memory store (Map/Object) for simple setups. Works for single-server deployments but doesn't scale to multiple instances.
+
+### Redis-Based (Production, Multi-Server)
+Use Redis for distributed rate limiting. Popular libraries exist for most frameworks and languages (e.g. `rate-limiter-flexible`, `@upstash/ratelimit`, `express-rate-limit`).
+
+### Middleware / Platform-Level
+Some deployment platforms and CDNs offer built-in rate limiting (e.g. Cloudflare, AWS WAF). This is the simplest option if available.
+
+## Response Format
+
+When rate limited, return:
+- HTTP status: `429 Too Many Requests`
+- Headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `Retry-After`
+- Body: `{ "error": "Too many requests" }`

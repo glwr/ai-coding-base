@@ -2,52 +2,26 @@
 
 Protect against XSS, Clickjacking, MIME sniffing, and other common web attacks.
 
-## Setup
+## Required Headers
 
-Add security headers to `next.config.ts`:
+Configure these headers in your framework's configuration or web server:
 
-```typescript
-import type { NextConfig } from 'next'
+| Header | Value | Protection |
+|--------|-------|-----------|
+| X-Frame-Options | DENY | Prevents your site from being embedded in iframes (clickjacking) |
+| X-Content-Type-Options | nosniff | Prevents browsers from guessing content types (MIME sniffing) |
+| Referrer-Policy | origin-when-cross-origin | Controls how much URL info is sent to other sites |
+| Strict-Transport-Security | max-age=31536000; includeSubDomains | Forces HTTPS connections |
 
-const nextConfig: NextConfig = {
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains',
-          },
-        ],
-      },
-    ]
-  },
-}
+## How to Set Headers
 
-export default nextConfig
-```
+Most frameworks provide a way to set response headers globally:
+- **Config file:** Add headers in your framework's config (e.g. next.config, nuxt.config, etc.)
+- **Middleware:** Set headers in a middleware function that runs on every request
+- **Web server:** Configure headers in nginx, Apache, or your reverse proxy
+- **CDN/Platform:** Some deployment platforms allow setting headers in their configuration
 
-## What Each Header Does
-
-| Header | Protection |
-|--------|-----------|
-| X-Frame-Options: DENY | Prevents your site from being embedded in iframes (clickjacking) |
-| X-Content-Type-Options: nosniff | Prevents browsers from guessing content types (MIME sniffing) |
-| Referrer-Policy | Controls how much URL info is sent to other sites |
-| Strict-Transport-Security | Forces HTTPS connections |
+Choose the approach that fits your stack. The important thing is that ALL responses include these headers.
 
 ## Verify After Deployment
 1. Open Chrome DevTools
@@ -57,8 +31,6 @@ export default nextConfig
 5. Verify all 4 headers are present
 
 ## Advanced (Optional)
-**Content-Security-Policy (CSP)** - The most powerful header, but can break your app if misconfigured. Only add after thorough testing:
-```
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'
-```
+**Content-Security-Policy (CSP)** — The most powerful header, but can break your app if misconfigured. Only add after thorough testing.
+
 Start with report-only mode first: `Content-Security-Policy-Report-Only`
