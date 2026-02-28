@@ -3,6 +3,7 @@ name: deploy
 description: Deploy with production-ready checks, error tracking, and security headers setup.
 argument-hint: [feature-spec-path]
 user-invocable: true
+disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
 model: sonnet
 ---
