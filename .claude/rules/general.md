@@ -11,6 +11,11 @@
 - ALL written output must be in English: code, comments, commits, docs, specs, context entries, UI text
 - No exceptions — even if the user writes in another language, all artifacts are English
 
+## Bash Commands
+- NEVER chain shell commands with `&&`, `||`, or `;` — permission checks may reject chained commands
+- Run each command in a separate Bash call instead
+- Parallel independent calls (multiple Bash tool uses in one message) are fine and encouraged
+
 ## Git Conventions
 - Commit format: `type(PROJ-X): description` (also `type(BUG-X):` or `type(TASK-X):`)
 - Types: feat, fix, refactor, test, docs, deploy, chore, security
