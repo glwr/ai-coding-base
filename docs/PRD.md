@@ -21,6 +21,12 @@ _How will you measure success? (e.g., user signups, retention, task completion r
 ## Constraints
 _Budget, timeline, technical limitations, team size._
 
+## Milestones
+
+| Milestone | Target Date | Features | Status |
+|-----------|-------------|----------|--------|
+| v1.0      | _TBD_       | _TBD_    | Planned |
+
 ## Non-Goals
 _What are you explicitly NOT building in this version?_
 

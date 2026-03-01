@@ -12,8 +12,8 @@
 - No exceptions — even if the user writes in another language, all artifacts are English
 
 ## Git Conventions
-- Commit format: `type(PROJ-X): description`
-- Types: feat, fix, refactor, test, docs, deploy, chore
+- Commit format: `type(PROJ-X): description` (also `type(BUG-X):` or `type(TASK-X):`)
+- Types: feat, fix, refactor, test, docs, deploy, chore, security
 - Check existing features before creating new ones: `ls features/ | grep PROJ-`
 - Check existing components before building (e.g. `git ls-files src/components/`)
 - Check existing APIs before building (e.g. `git ls-files src/app/api/` or equivalent)
@@ -26,7 +26,9 @@
 ## Status Updates
 - Update `features/INDEX.md` when feature status changes
 - Update the feature spec header status field
-- Valid statuses: Planned, In Progress, In Review, Deployed
+- Valid feature statuses: Planned, Ready, In Progress, In Review, Done, Deployed, Blocked
+- Valid backlog statuses: Open, In Progress, Fixed/Done, Closed
+- For all tracking operations (status updates, bug/task creation, milestones), read `.claude/skills/tracking-guide.md`
 
 ## Context Management
 - All skills read relevant `context/` files before starting work

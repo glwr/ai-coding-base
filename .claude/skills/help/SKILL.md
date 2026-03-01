@@ -28,14 +28,27 @@ Read these files to understand where the project stands:
 3. **Check Feature Specs:** For each feature in INDEX.md, check if:
    - Tech Design section exists (added by /architecture)
    - QA Test Results section exists (added by /qa)
+   - Security Audit section exists (added by /security)
    - Deployment section exists (added by /deploy)
 
-4. **Check Codebase:** Quick scan of what's been built
+4. **Check Backlog:** Read `features/INDEX.md` Backlog table
+   - Any open bugs? → Report count and severity
+   - Any open tasks? → Report count
+   - Check `backlog/` directory for detail files
+
+5. **Check Security Reports:** `ls reports/security/ 2>/dev/null`
+   - Any past audit reports? → Report dates and scope
+
+6. **Check Tracking Variant:** Read `Tracking` field from `CLAUDE.md`
+   - File-based or _TBD_? → Mention all tracking is in features/INDEX.md and backlog/
+   - GitHub Issues? → Mention `gh issue list` for live status
+
+7. **Check Codebase:** Quick scan of what's been built
    - Check for custom components (e.g. `ls src/components/ 2>/dev/null`)
    - Check for API routes (e.g. `ls src/app/api/ 2>/dev/null` or equivalent)
    - Check for component library components (e.g. `ls src/components/ui/ 2>/dev/null`)
 
-5. **Check Context:** Read `context/` files
+8. **Check Context:** Read `context/` files
    - Do context files exist? → Context system is set up
    - Are context files still empty templates? → No context captured yet
    - How many entries in each file? → Report context health
@@ -89,6 +102,9 @@ If the user asked a specific question (via arguments), answer it in the context 
 - "How do I deploy?" → Explain `/deploy` workflow and prerequisites
 - "Where's the API documentation?" → Point to `docs/api.md`
 - "Where's the architecture overview?" → Point to `docs/architecture.md`
+- "Where are the security reports?" → Point to `reports/security/` directory
+- "How do I track bugs?" → Explain backlog system (`backlog/`, `features/INDEX.md` Backlog table) and tracking variants
+- "What tracking variant am I using?" → Read `Tracking` field from `CLAUDE.md`
 
 ## Output Format
 

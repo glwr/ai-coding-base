@@ -1,18 +1,42 @@
 # Feature Index
 
-> Central tracking for all features. Updated by skills automatically.
+> Central tracking for all features, bugs, and tasks. Updated by skills automatically.
 
 ## Status Legend
-- **Planned** - Requirements written, ready for development
+
+### Feature Statuses
+- **Planned** - Requirements written, ready for architecture
+- **Ready** - Architecture done, ready for development
 - **In Progress** - Currently being built
 - **In Review** - QA testing in progress
+- **Done** - Passed QA, ready for deployment
 - **Deployed** - Live in production
+- **Blocked** - Waiting on a dependency
 
-## Features
+### Backlog Statuses
+- **Open** - Reported, not yet started
+- **In Progress** - Being worked on
+- **Fixed/Done** - Fix implemented or task completed
+- **Closed** - Verified and closed
 
-| ID | Feature | Status | Spec | Created |
-|----|---------|--------|------|---------|
+## Current Release: v1.0
+
+| Order | ID | Feature | Owner | Status | Spec | Created |
+|-------|----|---------|-------|--------|------|---------|
 
 <!-- Add features above this line -->
 
+## Completed Releases
+
+<!-- Move milestone sections here after all features are deployed -->
+
+## Backlog
+
+| ID | Type | Title | Priority | Status | Related | Created |
+|----|------|-------|----------|--------|---------|---------|
+
+<!-- Add bugs and tasks above this line -->
+
 ## Next Available ID: PROJ-1
+## Next Bug ID: BUG-1
+## Next Task ID: TASK-1

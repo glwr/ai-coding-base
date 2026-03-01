@@ -71,6 +71,12 @@ For each feature (after user approval of the breakdown):
 - Update the "Next Available ID" line
 - Verify the PRD roadmap table matches the feature specs
 
+### Phase 5b: Tracking Setup
+Read `.claude/skills/tracking-guide.md` for tracking operations. Then:
+- Read the `Tracking` field from `CLAUDE.md` to determine the variant (file-based or GitHub Issues)
+- **File-based (default):** Populate `features/INDEX.md` with a milestone table for the first release (e.g., v1.0)
+- **GitHub Issues:** Create labels (`status:planned`, `status:in-progress`, `status:ready`, `status:in-review`, `status:done`, `status:deployed`, `status:blocked`, `type:feature`, `type:bug`, `type:task`, `priority:p0`, `priority:p1`, `priority:p2`), create a milestone, and create issues for each feature. Update `features/INDEX.md` as local mirror.
+
 ### Phase 6: User Review
 Present everything for final approval:
 - PRD summary
@@ -148,6 +154,7 @@ Present the spec and ask for approval:
 - Set status to **Planned**
 - Update the "Next Available ID" line
 - Add the feature to the PRD roadmap table in `docs/PRD.md`
+- Read `.claude/skills/tracking-guide.md` — if tracking variant is GitHub Issues, also create a GitHub Issue for the feature and link it in INDEX.md
 
 ### Feature Mode Handoff
 > "Feature spec is ready! Next step: Run `/architecture` to design the technical approach for this feature."

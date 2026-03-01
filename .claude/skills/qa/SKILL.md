@@ -57,6 +57,13 @@ Verify existing features still work:
 - Add QA Test Results section to the feature spec file (NOT a separate file)
 - Use the template from [test-template.md](test-template.md)
 
+### 5b. Create Bug Entries for Critical/High Bugs
+For each Critical or High severity bug found:
+1. Read `.claude/skills/tracking-guide.md` for tracking operations
+2. Create a bug file in `backlog/BUG-X-name.md` using `backlog/bug-template.md`
+3. Add the bug to the Backlog table in `features/INDEX.md`
+4. Set Source to `/qa` and link the related feature
+
 ### 6. User Review
 Present test results with clear summary:
 - Total acceptance criteria: X passed, Y failed

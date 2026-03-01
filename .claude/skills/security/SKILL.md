@@ -74,12 +74,31 @@ For each user-facing endpoint:
 
 ## Output
 
-Present findings using the security-reviewer agent's output format, then add:
+### Step 1: Write Full Report
+Write the complete audit report to `reports/security/YYYY-MM-DD-[scope].md` using the template from [report-template.md](report-template.md). Include every finding with severity, file:line, OWASP category, risk, fix, and code example.
 
-### Action Items
-A prioritized list of fixes, grouped by severity.
+### Step 2: Update Feature Spec (if scoped to a feature)
+Add a brief Security Audit section to the feature spec file:
+```markdown
+## Security Audit
+**Date:** YYYY-MM-DD
+**Report:** [reports/security/YYYY-MM-DD-PROJ-X.md](../reports/security/YYYY-MM-DD-PROJ-X.md)
+**Result:** X findings (Y critical, Z high)
+**Recommendation:** Fix critical/high findings | Ready for QA
+```
 
-### Context Updates
+### Step 3: Create Bug Entries for Critical/High Findings
+For each Critical or High severity finding, read `.claude/skills/tracking-guide.md` and follow the instructions to create a bug entry. Reference the security report in the bug's "Related Report" field.
+
+### Step 4: Git Commit
+```
+security(PROJ-X): Add security audit report
+
+- Report: reports/security/YYYY-MM-DD-scope.md
+- Findings: X total (Y critical, Z high)
+```
+
+### Step 5: Context Updates
 If findings are relevant for future development, draft entries for `context/learnings.md`:
 ```markdown
 ### [IMPORTANT] [Security Finding Title]
@@ -95,5 +114,6 @@ Show context updates to the user for approval before writing.
 ## Handoff
 After completion:
 > "Security audit complete. [X findings: Y critical, Z high, ...]"
+> "Full report: `reports/security/YYYY-MM-DD-scope.md`"
 > If issues found: "Fix these issues, then run `/qa` to verify."
 > If clear: "No security issues found. Ready for `/deploy`."

@@ -67,7 +67,9 @@ For first deployment, guide the user through these setup guides:
 
 ### 6. Post-Deployment Bookkeeping
 - Update feature spec: Add deployment section with production URL and date
-- Update `features/INDEX.md`: Set status to **Deployed**
+- Read `.claude/skills/tracking-guide.md` and follow the instructions to:
+  - Update feature status to **Deployed** (handles both file-based and GitHub Issues)
+  - Update milestone progress if all features in the milestone are deployed
 - Create git tag: `git tag -a v1.X.0-PROJ-X -m "Deploy PROJ-X: [Feature Name]"`
 - Push tag: `git push origin v1.X.0-PROJ-X`
 

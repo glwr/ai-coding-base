@@ -15,6 +15,7 @@ _Fill in when starting a new project:_
 - **Deployment:** _TBD_
 - **Validation:** _TBD_
 - **State Management:** _TBD_
+- **Tracking:** _TBD_ _(File-based | GitHub Issues)_
 
 ## Project Structure
 
@@ -36,6 +37,9 @@ docs/
   deployment.md     Deployment & infrastructure guide
   design-system.md  Brand, colors, typography, design tokens
   production/       Production guides (security, performance, etc.)
+backlog/            Bug reports and technical tasks (BUG-X, TASK-X)
+reports/
+  security/         Security audit reports (YYYY-MM-DD-scope.md)
 ```
 
 ### Monorepo (optional)
@@ -50,6 +54,8 @@ packages/
 features/           Feature specifications (same as above)
 context/            Shared project memory (same as above)
 docs/               Documentation (same as above)
+backlog/            Bug reports and technical tasks (same as above)
+reports/            Audit reports (same as above)
 ```
 
 _When using a monorepo, adapt the path patterns in `.claude/rules/frontend.md` and `.claude/rules/backend.md` to match your actual structure (e.g. `apps/web/src/**` instead of `src/**`)._
