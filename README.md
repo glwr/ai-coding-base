@@ -1,51 +1,74 @@
 # ai-coding-base
 
-> A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, and Deployment. Tech-agnostic — define your stack per project.
+> A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, and Deployment. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
 
 ## Getting Started
 
 1. **Use this template** to create a new repository
-2. Run `/requirements` with a description of your project to initialize PRD + feature specs
+2. Run `/requirements` with a description of your project to initialize PRD + feature specs (sets Platform)
 3. Run `/architecture project` to design the system architecture
-4. Follow the skill workflow: `/frontend` → `/backend` → `/qa` → `/security` → `/deploy`
+4. Follow the skill workflow:
+   - **Web:** `/frontend` → `/backend` → `/qa` → `/security` → `/deploy`
+   - **Apple:** `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/appstore`
 
 ## What's Included
 
 ### Skills (Slash Commands)
 
+#### Cross-Platform Skills
+
 | Skill | Description |
 |-------|-------------|
 | `/requirements` | Create feature specs or initialize a new project (PRD + features) |
 | `/architecture` | Design architecture — `project` mode (system-wide) or feature mode |
-| `/frontend` | Build UI components using the project's frontend stack |
-| `/backend` | Build APIs, database schemas, server-side logic |
 | `/qa` | Test features against acceptance criteria + security audit |
-| `/security` | OWASP Top 10 security review (5-phase audit) |
-| `/deploy` | Deploy with production-ready checks, error tracking, security headers |
+| `/security` | OWASP Top 10 security review (5/6-phase audit, includes Apple platform checks) |
 | `/remember` | Save decisions, patterns, or learnings to project context (ADD, SEARCH, REVIEW modes) |
 | `/help` | Context-aware guide — shows where you are and what to do next |
+
+#### Web Skills
+
+| Skill | Description |
+|-------|-------------|
+| `/frontend` | Build UI components using the project's frontend stack |
+| `/backend` | Build APIs, database schemas, server-side logic |
+| `/deploy` | Deploy with production-ready checks, error tracking, security headers |
+
+#### Apple Skills
+
+| Skill | Description |
+|-------|-------------|
+| `/apple-ui` | Build SwiftUI views and navigation for Apple platforms |
+| `/apple-data` | Build data models, persistence, and networking |
+| `/apple-build` | Build, test, and archive with xcodebuild |
+| `/hig-review` | Human Interface Guidelines compliance review |
+| `/appstore` | App Store / TestFlight submission |
 
 Skills include supporting files (checklists, templates) in `.claude/skills/<skill>/`.
 
 ### Agents
 
-| Agent | Model | Purpose |
-|-------|-------|---------|
-| Frontend Developer | opus | Builds UI components |
-| Backend Developer | opus | Builds APIs and database |
-| QA Engineer | opus | Tests features, finds bugs |
-| Security Reviewer | sonnet | OWASP security audits (with project memory) |
+| Agent | Model | Purpose | Platform |
+|-------|-------|---------|----------|
+| Frontend Developer | opus | Builds UI components | Web |
+| Backend Developer | opus | Builds APIs and database | Web |
+| Swift Developer | opus | Builds SwiftUI views, data models, networking | Apple |
+| Swift Reviewer | sonnet | HIG compliance, Swift best practices (with project memory) | Apple |
+| QA Engineer | opus | Tests features, finds bugs | All |
+| Security Reviewer | sonnet | OWASP security audits (with project memory) | All |
 
 Agents are defined in `.claude/agents/` and invoked by their respective skills.
 
 ### Rules (Auto-Activated)
 
-| Rule | Activated When |
-|------|---------------|
-| `general.md` | Always loaded |
-| `security.md` | Always loaded |
-| `frontend.md` | Editing frontend files (components, pages, hooks, styles) |
-| `backend.md` | Editing backend files (API routes, database, server) |
+| Rule | Activated When | Platform |
+|------|---------------|----------|
+| `general.md` | Always loaded | All |
+| `security.md` | Always loaded | All |
+| `frontend.md` | Editing frontend files (components, pages, hooks, styles) | Web |
+| `backend.md` | Editing backend files (API routes, database, server) | Web |
+| `swift.md` | Editing Swift files (`**/*.swift`) | Apple |
+| `apple-project.md` | Editing Xcode project, Package.swift, plists, entitlements | Apple |
 
 Key rules enforced by `general.md`:
 - **No command chaining** — Never use `&&`, `||`, or `;` in Bash calls (permission checks may reject chained commands). Use separate Bash calls instead.
@@ -121,9 +144,9 @@ Security audit results are persisted to `reports/security/YYYY-MM-DD-scope.md` s
 
 ```
 .claude/
-  agents/             Agent definitions (frontend-dev, backend-dev, qa-engineer, security-reviewer)
+  agents/             Agent definitions (frontend-dev, backend-dev, swift-dev, swift-reviewer, qa-engineer, security-reviewer)
   hooks/              Pre/Post tool-use hooks (secret scanner, lock file protection)
-  rules/              Auto-activated rules (general, security, frontend, backend)
+  rules/              Auto-activated rules (general, security, frontend, backend, swift, apple-project)
   skills/             Skill definitions with templates and checklists
   settings.json       Shared permission deny rules and hooks
   settings.local.json.example  Example allow-list (copy and customize)
@@ -155,11 +178,12 @@ src/                  Source code (structure depends on framework)
 
 ## Customization
 
-1. **Fill in `CLAUDE.md`** — Tech stack, build commands, tracking variant
-2. **Adapt path patterns** in `.claude/rules/frontend.md` and `.claude/rules/backend.md` to match your structure
+1. **Fill in `CLAUDE.md`** — Platform, tech stack, build commands, tracking variant
+2. **Adapt path patterns** in `.claude/rules/frontend.md` and `.claude/rules/backend.md` (web) or `.claude/rules/swift.md` and `.claude/rules/apple-project.md` (Apple) to match your structure
 3. **Copy `.claude/settings.local.json.example`** to `.claude/settings.local.json` and adjust the allow-list
 4. **Fill in doc templates** as you build — architecture, API, development, deployment, design system
 5. **For monorepos** — See the monorepo structure section in `CLAUDE.md` and adapt paths accordingly
+6. **For Apple projects** — Set Platform to "Apple" in `CLAUDE.md` and fill in Apple-specific fields (deployment target, UI framework, data persistence, architecture pattern)
 
 ## License
 

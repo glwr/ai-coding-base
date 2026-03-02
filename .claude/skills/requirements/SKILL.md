@@ -32,12 +32,21 @@ Use this mode when the user provides a project description for the first time. T
 
 ### Phase 1: Understand the Project
 Ask the user interactive questions to clarify the big picture:
+- **Platform:** Web, Apple (iOS/macOS), or Cross-platform?
 - What is the core problem this product solves?
 - Who are the primary target users?
 - What are the must-have features for MVP vs. nice-to-have?
 - Are there existing tools/competitors? What's different here?
 - Is a backend needed? (User accounts, data sync across devices, multi-user)
 - What are the constraints? (Timeline, budget, team size)
+
+**If Apple platform:**
+- Which Apple platforms? (iOS, macOS, watchOS, tvOS, visionOS)
+- Minimum deployment target? (e.g., iOS 17.0)
+- UI framework preference? (SwiftUI, AppKit, UIKit)
+- Architecture pattern? (MVVM, TCA, MV)
+- Data persistence? (SwiftData, Core Data, UserDefaults)
+- Will it use CloudKit or a custom backend?
 
 Use `AskUserQuestion` with clear single/multiple choice options.
 
@@ -85,12 +94,23 @@ Present everything for final approval:
 - Suggested first feature to start with
 
 ### Init Mode Handoff
+
+**Web projects:**
 > "Project setup complete! I've created:
 > - PRD at `docs/PRD.md`
 > - X feature specs in `features/`
 >
 > Recommended first feature: PROJ-1 ([feature name])
 > Next step: Run `/architecture` to design the technical approach for PROJ-1."
+
+**Apple projects:**
+> "Project setup complete! I've created:
+> - PRD at `docs/PRD.md`
+> - X feature specs in `features/`
+>
+> Recommended first feature: PROJ-1 ([feature name])
+> Next step: Run `/architecture project` to design the system architecture, then `/architecture features/PROJ-1-name.md` for the feature.
+> Development workflow: `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/appstore`"
 
 ### Init Mode Context Updates
 After committing, update project context:

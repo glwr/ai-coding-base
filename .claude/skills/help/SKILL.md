@@ -43,10 +43,14 @@ Read these files to understand where the project stands:
    - File-based or _TBD_? → Mention all tracking is in features/INDEX.md and backlog/
    - GitHub Issues? → Mention `gh issue list` for live status
 
-7. **Check Codebase:** Quick scan of what's been built
-   - Check for custom components (e.g. `ls src/components/ 2>/dev/null`)
-   - Check for API routes (e.g. `ls src/app/api/ 2>/dev/null` or equivalent)
-   - Check for component library components (e.g. `ls src/components/ui/ 2>/dev/null`)
+7. **Check Platform:** Read `Platform` field from `CLAUDE.md`
+   - Web or _TBD_? → Show web workflow
+   - Apple? → Show Apple workflow
+   - Cross-platform? → Show both workflows
+
+8. **Check Codebase:** Quick scan of what's been built
+   - **Web:** Check for custom components (e.g. `ls src/components/ 2>/dev/null`), API routes (e.g. `ls src/app/api/ 2>/dev/null`), component library components
+   - **Apple:** Check for Swift files (`git ls-files | grep -E '\.swift$' | head -20`), Xcode project (`ls *.xcodeproj 2>/dev/null`), feature modules (`ls Features/ 2>/dev/null`)
 
 8. **Check Context:** Read `context/` files
    - Do context files exist? → Context system is set up
@@ -71,17 +75,36 @@ Based on the state analysis, determine what the user should do next:
 > Run `/architecture` to create the technical design for `features/PROJ-X-name.md`
 
 **If features have Tech Design but no implementation:**
+
+_Web (Platform = Web):_
 > Feature PROJ-X has a tech design and is ready for implementation.
 > Run `/frontend` to build the UI for `features/PROJ-X-name.md`
 > (If backend is needed, run `/backend` after frontend is done)
 
+_Apple (Platform = Apple):_
+> Feature PROJ-X has a tech design and is ready for implementation.
+> Run `/apple-ui` to build the SwiftUI views for `features/PROJ-X-name.md`
+> (If data/networking is needed, run `/apple-data` after UI is done)
+
 **If features are implemented but no QA:**
+
+_Web:_
 > Feature PROJ-X is implemented and ready for testing.
 > Run `/security` to audit `features/PROJ-X-name.md` for vulnerabilities, then `/qa` to test against acceptance criteria.
 
+_Apple:_
+> Feature PROJ-X is implemented and ready for testing.
+> Run `/qa` to test, then `/security` for security audit, then `/hig-review` for HIG compliance.
+
 **If features have passed QA but aren't deployed:**
+
+_Web:_
 > Feature PROJ-X has passed QA and is ready for deployment.
 > Run `/deploy` to deploy to production.
+
+_Apple:_
+> Feature PROJ-X has passed QA and is ready for release.
+> Run `/apple-build` to build and archive, then `/appstore` to submit to App Store / TestFlight.
 
 **If all features are deployed:**
 > All current features are deployed! You can:
@@ -92,7 +115,7 @@ Based on the state analysis, determine what the user should do next:
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all 9 skills with brief descriptions (include /remember for context management, /security for audits)
+- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /deploy). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /remember, /help).
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I create system architecture?" → Explain `/architecture project` mode
 - "How do I save a decision?" → Explain `/remember` workflow

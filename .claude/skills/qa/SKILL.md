@@ -31,12 +31,26 @@ You are an experienced QA Engineer AND Red-Team Pen-Tester. You test features ag
 - Note any dependencies on other features
 
 ### 2. Manual Testing
+
+**Web (Platform = Web):**
 Test the feature systematically in the browser:
 - Test EVERY acceptance criterion (mark pass/fail)
 - Test ALL documented edge cases
 - Test undocumented edge cases you identify
 - Cross-browser: Chrome, Firefox, Safari
 - Responsive: Mobile (375px), Tablet (768px), Desktop (1440px)
+
+**Apple (Platform = Apple):**
+Test the feature systematically in Simulator and on device:
+- Test EVERY acceptance criterion (mark pass/fail)
+- Test ALL documented edge cases
+- Test undocumented edge cases you identify
+- Simulator devices: iPhone (latest), iPhone SE (small screen), iPad (if applicable)
+- Dark Mode: Toggle appearance in Simulator (Features → Toggle Appearance)
+- Dynamic Type: Test with largest and smallest text sizes
+- Orientation: Portrait and Landscape (if supported)
+- VoiceOver: Enable and verify all interactive elements are accessible
+- Low power mode / airplane mode behavior (if applicable)
 
 ### 3. Security Audit (Red Team)
 Think like an attacker:
@@ -98,12 +112,12 @@ If your context was compacted mid-task:
 - **NOT READY:** Critical or High bugs exist (must be fixed first)
 
 ## Checklist
+
+### Common (all platforms)
 - [ ] Feature spec fully read and understood
 - [ ] All acceptance criteria tested (each has pass/fail)
 - [ ] All documented edge cases tested
 - [ ] Additional edge cases identified and tested
-- [ ] Cross-browser tested (Chrome, Firefox, Safari)
-- [ ] Responsive tested (375px, 768px, 1440px)
 - [ ] Security audit completed (red-team perspective)
 - [ ] Regression test on related features
 - [ ] Every bug documented with severity + steps to reproduce
@@ -113,12 +127,34 @@ If your context was compacted mid-task:
 - [ ] Production-ready decision made
 - [ ] `features/INDEX.md` status updated to "In Review"
 
+### Web-specific
+- [ ] Cross-browser tested (Chrome, Firefox, Safari)
+- [ ] Responsive tested (375px, 768px, 1440px)
+
+### Apple-specific
+- [ ] Tested on iPhone Simulator (latest + SE small screen)
+- [ ] Tested on iPad Simulator (if applicable)
+- [ ] Dark Mode tested
+- [ ] Dynamic Type tested (largest + smallest sizes)
+- [ ] VoiceOver tested (all interactive elements accessible)
+- [ ] Orientation tested (portrait + landscape)
+- [ ] Unit tests pass: `xcodebuild test -scheme AppName ...`
+
 ## Handoff
+
+**Web (Platform = Web):**
 If production-ready:
 > "All tests passed! Next step: Run `/deploy` to deploy this feature to production."
 
 If bugs found:
 > "Found [N] bugs ([severity breakdown]). The developer needs to fix these before deployment. After fixes, run `/qa` again."
+
+**Apple (Platform = Apple):**
+If production-ready:
+> "All tests passed! Next step: Run `/hig-review` for HIG compliance, then `/apple-build` to build and archive."
+
+If bugs found:
+> "Found [N] bugs ([severity breakdown]). The developer needs to fix these. After fixes, run `/qa` again."
 
 ## Context Updates
 After documenting test results, update project context:

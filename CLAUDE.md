@@ -6,6 +6,7 @@
 
 _Fill in when starting a new project:_
 
+- **Platform:** _TBD_ _(Web | Apple | Cross-platform)_
 - **Framework:** _TBD_
 - **Language:** _TBD_
 - **Styling:** _TBD_
@@ -16,6 +17,13 @@ _Fill in when starting a new project:_
 - **Validation:** _TBD_
 - **State Management:** _TBD_
 - **Tracking:** _TBD_ _(File-based | GitHub Issues)_
+
+_Apple-specific (fill in when Platform = Apple):_
+
+- **Min Deployment Target:** _TBD_ _(e.g., iOS 17.0, macOS 14.0)_
+- **UI Framework:** _TBD_ _(SwiftUI | AppKit | UIKit)_
+- **Data Persistence:** _TBD_ _(SwiftData | Core Data | UserDefaults)_
+- **Architecture Pattern:** _TBD_ _(MVVM | TCA | MV)_
 
 ## Project Structure
 
@@ -60,8 +68,35 @@ reports/            Audit reports (same as above)
 
 _When using a monorepo, adapt the path patterns in `.claude/rules/frontend.md` and `.claude/rules/backend.md` to match your actual structure (e.g. `apps/web/src/**` instead of `src/**`)._
 
+### Apple App (when Platform = Apple)
+```
+AppName/
+  App.swift           App entry point
+  Features/           Feature modules (grouped by feature)
+    FeatureName/
+      Views/           SwiftUI views
+      ViewModels/      ViewModels or @Observable models
+      Models/          Data models
+  Shared/
+    Services/          Networking, persistence, utilities
+    Extensions/        Swift extensions
+    Resources/         Assets, localization
+  AppName.entitlements Capabilities
+  Info.plist           App configuration
+  PrivacyInfo.xcprivacy Privacy manifest
+AppNameTests/          Unit tests
+AppNameUITests/        UI tests
+Package.swift          Dependencies (SPM)
+features/              Feature specifications (same as above)
+context/               Shared project memory (same as above)
+docs/                  Documentation (same as above)
+backlog/               Bug reports and technical tasks (same as above)
+reports/               Audit reports (same as above)
+```
+
 ## Development Workflow
 
+### Web (Platform = Web)
 1. `/requirements` - Create feature spec from idea (or initialize new project)
 2. `/architecture project` - Design system-wide architecture (once, after init)
 3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
@@ -71,6 +106,19 @@ _When using a monorepo, adapt the path patterns in `.claude/rules/frontend.md` a
 7. `/security` - OWASP security audit + vulnerability scan
 8. `/deploy` - Deploy + production-ready checks
 9. `/remember` - Save decisions, patterns, or learnings to project context
+
+### Apple (Platform = Apple)
+1. `/requirements` - Create feature spec from idea (or initialize new project)
+2. `/architecture project` - Design system-wide architecture (once, after init)
+3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
+4. `/apple-ui` - Build SwiftUI views and navigation
+5. `/apple-data` - Build data models, persistence, networking
+6. `/qa` - Test against acceptance criteria (simulator + accessibility)
+7. `/security` - Security audit (OWASP + Apple platform security)
+8. `/hig-review` - Human Interface Guidelines compliance review
+9. `/apple-build` - Build, test, archive with xcodebuild
+10. `/appstore` - App Store / TestFlight submission
+11. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 
@@ -130,10 +178,17 @@ If a task requires tools, packages, or system changes not already present: stop 
 _Fill in when starting a new project:_
 
 ```bash
+# Web
 # npm run dev        # Development server
 # npm run build      # Production build
 # npm run lint       # Linting
 # npm run test       # Tests
+
+# Apple (uncomment when Platform = Apple)
+# xcodebuild build -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 16'
+# xcodebuild test -scheme AppName -destination 'platform=iOS Simulator,name=iPhone 16'
+# swift build        # SPM build (for packages/CLI tools)
+# swift test         # SPM tests
 ```
 
 ## Documentation

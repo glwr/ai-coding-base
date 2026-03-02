@@ -22,7 +22,17 @@
 - Referrer-Policy: origin-when-cross-origin
 - Strict-Transport-Security with includeSubDomains
 
+## Apple Platform Security (when Platform = Apple)
+- Use Keychain Services for storing secrets, tokens, and credentials — never UserDefaults
+- Enable App Transport Security (ATS) — only add exceptions with documented justification
+- Include a Privacy Manifest (`PrivacyInfo.xcprivacy`) for required reason APIs
+- Add usage description strings for ALL requested permissions (camera, location, photos, etc.)
+- Use Data Protection entitlement (`NSFileProtectionComplete`) for sensitive files
+- Validate all data from external sources (API responses, deep links, pasteboard)
+- Use certificate pinning for high-security API connections (if applicable)
+
 ## Code Review Triggers
 - Any changes to access control policies require explicit user approval
 - Any changes to authentication flow require explicit user approval
 - Any new environment variables must be documented in .env.local.example
+- Any changes to entitlements or privacy manifest require explicit user approval

@@ -72,6 +72,34 @@ For each user-facing endpoint:
 3. Check output encoding before sending to client
 4. Verify error responses don't leak sensitive information
 
+### Phase 6: Apple Platform Security (when Platform = Apple)
+Skip this phase if Platform is not Apple.
+
+1. Check Keychain usage (secrets must not be in UserDefaults):
+   ```bash
+   grep -rn "UserDefaults.*password\|UserDefaults.*token\|UserDefaults.*secret\|UserDefaults.*key" --include="*.swift"
+   ```
+2. Check App Transport Security exceptions:
+   ```bash
+   grep -rn "NSAppTransportSecurity\|NSAllowsArbitraryLoads\|NSExceptionDomains" --include="*.plist"
+   ```
+3. Check Privacy Manifest exists and covers required reason APIs:
+   ```bash
+   ls **/PrivacyInfo.xcprivacy 2>/dev/null
+   grep -rn "NSPrivacyAccessedAPIType\|NSPrivacyTracking" --include="*.xcprivacy"
+   ```
+4. Check for hardcoded secrets in Swift code:
+   ```bash
+   grep -rn 'let.*[Kk]ey.*=.*"\|let.*[Ss]ecret.*=.*"\|let.*[Tt]oken.*=.*"' --include="*.swift" | grep -v "test\|spec\|mock\|preview"
+   ```
+5. Check entitlements for unnecessary capabilities:
+   ```bash
+   cat *.entitlements 2>/dev/null
+   ```
+6. Verify data protection on sensitive files:
+   - Check for `FileProtectionType` usage on file writes
+   - Verify `NSFileProtectionComplete` for sensitive data
+
 ## Output
 
 ### Step 1: Write Full Report
