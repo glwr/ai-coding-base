@@ -6,11 +6,14 @@ At the start of every task, detect the project context by reading `CLAUDE.md`:
 - **Platform** (Web, Apple, Cross-platform) → determines which skills apply
 - **Tracking** (File-based, GitHub Issues) → determines how to track work
 
-### Skill sequences by platform
+### Mandatory skill sequences (in order, do not skip)
 
 **Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/qa` → `/security` → `/release`
 **Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
-**Both:** `/track` (anytime) · `/remember` (anytime) · `/help` (anytime)
+
+### Available anytime (not sequential)
+
+`/track` · `/remember` · `/help`
 
 ### Enforcement rules
 - **Never skip steps.** Each skill has prerequisites. Check the feature spec and INDEX.md to see what has been done:

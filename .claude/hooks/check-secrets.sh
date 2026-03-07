@@ -25,22 +25,22 @@ esac
 # Check for potential secrets (high-confidence patterns only)
 FINDINGS=$(grep -nE \
   '(password|secret|api_key|apiKey|API_KEY|PRIVATE_KEY|access_token|auth_token|client_secret|clientSecret|signing_key|signingKey|encryption_key)\s*[:=]\s*["\x27][^"\x27]{8,}' \
-  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|TODO\|FIXME\|your_\|changeme\|xxx\|<.*>')
+  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|TODO\|FIXME\|your_\|changeme\|xxx\|FAKE_\|DUMMY_\|STUB_\|<.*>')
 
 # Check for connection strings with embedded credentials
 CONN_FINDINGS=$(grep -nE \
   '(postgresql|mysql|mongodb|redis|rediss|amqp|mssql)://[^@\s]+:[^@\s]+@' \
-  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|localhost\|your_\|changeme')
+  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|localhost\|your_\|changeme\|FAKE_\|DUMMY_\|STUB_')
 
 # Check for cloud credentials (Azure, AWS, GCP)
 CLOUD_FINDINGS=$(grep -nE \
   '(AZURE_CLIENT_SECRET|AWS_SECRET_ACCESS_KEY|GOOGLE_APPLICATION_CREDENTIALS|ACR_PASSWORD|REGISTRY_PASSWORD)\s*[:=]\s*["\x27][^"\x27]{8,}' \
-  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|TODO\|FIXME\|your_\|changeme')
+  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|TODO\|FIXME\|your_\|changeme\|FAKE_\|DUMMY_\|STUB_')
 
 # Check for JWT/signing secrets (base64 or hex patterns)
 JWT_FINDINGS=$(grep -nE \
   '(jwt|JWT|signing|SIGNING).*(secret|SECRET|key|KEY)\s*[:=]\s*["\x27][A-Za-z0-9+/=]{20,}' \
-  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder')
+  "$FILE_PATH" 2>/dev/null | grep -v '\.env\|process\.env\|example\|placeholder\|FAKE_\|DUMMY_\|STUB_')
 
 # Combine all findings
 FINDINGS="${FINDINGS}${CONN_FINDINGS:+
