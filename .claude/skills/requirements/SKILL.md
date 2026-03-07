@@ -33,6 +33,7 @@ Use this mode when the user provides a project description for the first time. T
 ### Phase 1: Understand the Project
 Ask the user interactive questions to clarify the big picture:
 - **Platform:** Web, Apple (iOS/macOS), or Cross-platform?
+- **Tracking:** File-based (default, everything in markdown) or GitHub Issues (synced with local files)?
 - What is the core problem this product solves?
 - Who are the primary target users?
 - What are the must-have features for MVP vs. nice-to-have?
@@ -49,6 +50,12 @@ Ask the user interactive questions to clarify the big picture:
 - Will it use CloudKit or a custom backend?
 
 Use `AskUserQuestion` with clear single/multiple choice options.
+
+### Phase 1b: Update CLAUDE.md Tech Stack
+Based on the user's answers, update the `CLAUDE.md` Tech Stack section:
+- Set **Platform** (Web, Apple, Cross-platform)
+- Set **Tracking** to the user's choice (`File-based` or `GitHub Issues`)
+- Fill in other known fields (Framework, Language, etc.) — leave unknown ones as `_TBD_`
 
 ### Phase 2: Create the PRD
 Based on user answers, fill out `docs/PRD.md` with:

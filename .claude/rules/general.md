@@ -29,11 +29,14 @@
 - Never proceed to the next workflow phase without user confirmation
 
 ## Status Updates
-- Update `features/INDEX.md` when feature status changes
+- Read the `Tracking` field from `CLAUDE.md` Tech Stack to determine the variant: `File-based` or `GitHub Issues`
+- For all tracking operations (status updates, bug/task creation, milestones), read `.claude/skills/tracking-guide.md` and follow the matching variant
+- **File-based:** All tracking happens in markdown files only (`features/INDEX.md`, `backlog/`, feature specs)
+- **GitHub Issues:** Create/update GitHub Issues via `gh` CLI AND keep `features/INDEX.md` as a local mirror in sync
+- Always update `features/INDEX.md` when feature status changes (both variants)
 - Update the feature spec header status field
 - Valid feature statuses: Planned, Ready, In Progress, In Review, Done, Deployed, Blocked
 - Valid backlog statuses: Open, In Progress, Fixed/Done, Closed
-- For all tracking operations (status updates, bug/task creation, milestones), read `.claude/skills/tracking-guide.md`
 
 ## Context Management
 - All skills read relevant `context/` files before starting work
