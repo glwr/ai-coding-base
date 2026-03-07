@@ -91,7 +91,13 @@ For each feature (after user approval of the breakdown):
 Read `.claude/skills/tracking-guide.md` for tracking operations. Then:
 - Read the `Tracking` field from `CLAUDE.md` to determine the variant (file-based or GitHub Issues)
 - **File-based (default):** Populate `features/INDEX.md` with a milestone table for the first release (e.g., v1.0)
-- **GitHub Issues:** Create labels (`status:planned`, `status:in-progress`, `status:ready`, `status:in-review`, `status:done`, `status:deployed`, `status:blocked`, `type:feature`, `type:bug`, `type:task`, `priority:p0`, `priority:p1`, `priority:p2`), create a milestone, and create issues for each feature. Update `features/INDEX.md` as local mirror.
+- **GitHub Issues:**
+  1. Delete GitHub's default labels (bug, enhancement, etc.) — see tracking-guide.md "Cleanup" section
+  2. Create all labels from tracking-guide.md (type, priority, status, area, effort) — run each `gh label create` command separately, never chain
+  3. Create a milestone for the first release
+  4. Create a GitHub issue for each feature (with `type:feature`, `priority:pX`, `status:planned` labels)
+  5. Create sub-issues for user stories within each feature and link them to the parent
+  6. Update `features/INDEX.md` as local mirror with issue numbers
 
 ### Phase 6: User Review
 Present everything for final approval:

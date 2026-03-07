@@ -21,10 +21,11 @@
 
 ## Current Release: v1.0
 
-| Order | ID | Feature | Owner | Status | Spec | Created |
-|-------|----|---------|-------|--------|------|---------|
+| Order | ID | Feature | Owner | Status | Issue | Spec | Created |
+|-------|----|---------|-------|--------|-------|------|---------|
 
 <!-- Add features above this line -->
+<!-- Issue column: leave empty for File-based tracking, add #N link for GitHub Issues -->
 
 ## Completed Releases
 
@@ -32,10 +33,11 @@
 
 ## Backlog
 
-| ID | Type | Title | Priority | Status | Related | Created |
-|----|------|-------|----------|--------|---------|---------|
+| ID | Type | Title | Priority | Status | Issue | Related | Created |
+|----|------|-------|----------|--------|-------|---------|---------|
 
 <!-- Add bugs and tasks above this line -->
+<!-- Issue column: leave empty for File-based tracking, add #N link for GitHub Issues -->
 
 ## Next Available ID: PROJ-1
 ## Next Bug ID: BUG-1

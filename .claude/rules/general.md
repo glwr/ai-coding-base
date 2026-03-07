@@ -19,6 +19,11 @@
 ## Git Conventions
 - Commit format: `type(PROJ-X): description` (also `type(BUG-X):` or `type(TASK-X):`)
 - Types: feat, fix, refactor, test, docs, deploy, chore, security
+- **GitHub Issues linking (when Tracking = GitHub Issues):**
+  - Append `(#N)` with the GitHub issue number to every commit: `feat(PROJ-1): add login form (#3)`
+  - Branch names reference the issue: `feat/PROJ-1-login-form`
+  - PR bodies use closing keywords: `Closes #3` (auto-closes on merge) or `Related to #3` (stays open)
+  - Look up issue numbers via: `gh issue list --search "PROJ-X" --json number,title`
 - Check existing features before creating new ones: `ls features/ | grep PROJ-`
 - Check existing components before building (e.g. `git ls-files src/components/`)
 - Check existing APIs before building (e.g. `git ls-files src/app/api/` or equivalent)

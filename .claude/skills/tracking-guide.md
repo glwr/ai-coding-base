@@ -10,7 +10,87 @@ Read the `Tracking` field from `CLAUDE.md` (Tech Stack section):
 
 ---
 
+## Linking: Commits, Branches, and PRs (GitHub Issues variant)
+
+**CRITICAL:** Every commit, branch, and PR MUST reference the related issue number. This creates automatic traceability in GitHub.
+
+### Branch Naming
+Create branches that reference the issue number:
+```
+feat/PROJ-1-feature-name      # for features (issue #3)
+fix/BUG-5-login-crash          # for bugs (issue #12)
+task/TASK-2-setup-ci           # for tasks (issue #7)
+```
+
+### Commit Messages
+Always include the GitHub issue number in commits:
+```
+feat(PROJ-1): add user registration form (#3)
+fix(BUG-5): resolve login crash on empty email (#12)
+refactor(PROJ-2): extract validation logic (#5)
+```
+- The `#N` at the end links the commit to issue N in GitHub
+- Use the project ID (PROJ-X, BUG-X, TASK-X) AND the GitHub issue number
+
+### Pull Requests
+Link PRs to issues using closing keywords in the PR body:
+```
+Closes #3
+Fixes #12
+Resolves #7
+```
+- This automatically closes the issue when the PR is merged
+- For partial work (issue stays open): use `Related to #3` instead
+
+### How to Find the Issue Number
+```bash
+gh issue list --label "type:feature" --search "PROJ-1" --json number,title
+```
+
+---
+
 ## Operations
+
+### Create Feature
+
+**File-based:**
+1. Determine next ID from `features/INDEX.md` → "Next Available ID: PROJ-X"
+2. Create feature spec `features/PROJ-X-feature-name.md`
+3. Add row to Features table in `features/INDEX.md`
+4. Increment "Next Available ID" counter
+
+**GitHub Issues:**
+1. Determine next ID from `features/INDEX.md` → "Next Available ID: PROJ-X"
+2. Create feature spec `features/PROJ-X-feature-name.md`
+3. Create GitHub issue:
+   ```bash
+   gh issue create --title "PROJ-X: [feature name]" --label "type:feature,priority:pX,status:planned" --milestone "vX.Y" --body "Feature spec: features/PROJ-X-feature-name.md"
+   ```
+4. Add row to Features table in `features/INDEX.md` (include issue number)
+5. Increment "Next Available ID" counter
+6. If the feature has user stories, create sub-issues (see below)
+
+### Create User Stories as Sub-Issues
+
+**File-based:**
+User stories are listed in the feature spec file — no separate tracking.
+
+**GitHub Issues:**
+After creating the parent feature issue, create sub-issues for each user story:
+```bash
+gh issue create --title "Story: [user story title]" --label "type:story,status:planned" --body "Parent feature: PROJ-X
+As a [user], I want to [action] so that [goal]
+
+Acceptance criteria:
+- [ ] Criterion 1
+- [ ] Criterion 2"
+```
+Then link as sub-issue to the parent:
+```bash
+gh issue edit <parent-number> --add-sub-issue <story-number>
+```
+
+---
 
 ### Update Feature Status
 
@@ -18,7 +98,7 @@ Read the `Tracking` field from `CLAUDE.md` (Tech Stack section):
 Update the feature's row in `features/INDEX.md` Features table. Valid statuses: Planned, Ready, In Progress, In Review, Done, Deployed, Blocked.
 
 **GitHub Issues:**
-1. Find the issue number for the feature: `gh issue list --label "type:feature" --search "PROJ-X" --json number,title`
+1. Find the issue number: `gh issue list --label "type:feature" --search "PROJ-X" --json number,title`
 2. Update labels: `gh issue edit <number> --remove-label "status:planned" --add-label "status:in-progress"`
 3. Update `features/INDEX.md` as local mirror (keep in sync)
 
@@ -33,10 +113,22 @@ Update the feature's row in `features/INDEX.md` Features table. Valid statuses: 
 4. Increment "Next Bug ID" counter
 
 **GitHub Issues:**
-1. Create issue: `gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --milestone "vX.Y" --body "..."`
-2. Also create the local file `backlog/BUG-X-short-name.md` for detailed tracking
-3. Add row to Backlog table in `features/INDEX.md` with issue link
-4. Increment "Next Bug ID" counter
+1. Determine next bug ID from `features/INDEX.md` → "Next Bug ID: BUG-X"
+2. Create issue:
+   ```bash
+   gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --milestone "vX.Y" --body "[description]
+
+   **Steps to reproduce:**
+   1. ...
+
+   **Expected:** ...
+   **Actual:** ...
+
+   Related feature: PROJ-Y (#N)"
+   ```
+3. Also create the local file `backlog/BUG-X-short-name.md` for detailed tracking
+4. Add row to Backlog table in `features/INDEX.md` with issue link
+5. Increment "Next Bug ID" counter
 
 ---
 
@@ -49,10 +141,14 @@ Update the feature's row in `features/INDEX.md` Features table. Valid statuses: 
 4. Increment "Next Task ID" counter
 
 **GitHub Issues:**
-1. Create issue: `gh issue create --title "TASK-X: [title]" --label "type:task,priority:pX,status:open" --milestone "vX.Y" --body "..."`
-2. Also create the local file `backlog/TASK-X-short-name.md` for detailed tracking
-3. Add row to Backlog table in `features/INDEX.md` with issue link
-4. Increment "Next Task ID" counter
+1. Determine next task ID from `features/INDEX.md` → "Next Task ID: TASK-X"
+2. Create issue:
+   ```bash
+   gh issue create --title "TASK-X: [title]" --label "type:task,priority:pX,status:open" --milestone "vX.Y" --body "[description]"
+   ```
+3. Also create the local file `backlog/TASK-X-short-name.md` for detailed tracking
+4. Add row to Backlog table in `features/INDEX.md` with issue link
+5. Increment "Next Task ID" counter
 
 ---
 
@@ -89,27 +185,63 @@ Both variants: Read `features/INDEX.md` → "Next Available ID: PROJ-X" and use 
 
 ## GitHub Issues: Label Set
 
-Create these labels during project init (`/requirements` Init Mode, Phase 5b):
+Create these labels during project init (`/requirements` Init Mode, Phase 5b).
+Run each command separately (no chaining).
 
+### Type labels (what is it)
 ```bash
-# Status labels
-gh label create "status:planned" --color "e4e669" --description "Requirements written"
-gh label create "status:ready" --color "0e8a16" --description "Architecture done, ready for dev"
-gh label create "status:in-progress" --color "1d76db" --description "Currently being built"
-gh label create "status:in-review" --color "5319e7" --description "QA testing in progress"
-gh label create "status:done" --color "0e8a16" --description "Passed QA"
-gh label create "status:deployed" --color "006b75" --description "Live in production"
-gh label create "status:blocked" --color "b60205" --description "Blocked by dependency"
-
-# Type labels
-gh label create "type:feature" --color "a2eeef" --description "Feature implementation"
+gh label create "type:feature" --color "0075ca" --description "Feature implementation"
+gh label create "type:story" --color "a2eeef" --description "User story (sub-issue of a feature)"
 gh label create "type:bug" --color "d73a4a" --description "Bug report"
 gh label create "type:task" --color "d4c5f9" --description "Technical task"
+gh label create "type:chore" --color "ededed" --description "Maintenance, dependencies, CI"
+```
 
-# Priority labels
-gh label create "priority:p0" --color "b60205" --description "Critical - must fix now"
-gh label create "priority:p1" --color "e4e669" --description "High - fix soon"
-gh label create "priority:p2" --color "0e8a16" --description "Normal - fix when possible"
+### Priority labels (how urgent)
+```bash
+gh label create "priority:critical" --color "b60205" --description "P0 - Must fix immediately"
+gh label create "priority:high" --color "d93f0b" --description "P1 - Fix soon"
+gh label create "priority:medium" --color "fbca04" --description "P2 - Normal priority"
+gh label create "priority:low" --color "0e8a16" --description "P3 - Nice to have"
+```
+
+### Status labels (where in the workflow)
+```bash
+gh label create "status:planned" --color "e4e669" --description "Requirements written, not yet started"
+gh label create "status:ready" --color "0e8a16" --description "Architecture done, ready for dev"
+gh label create "status:in-progress" --color "1d76db" --description "Currently being built"
+gh label create "status:in-review" --color "5319e7" --description "QA / code review in progress"
+gh label create "status:done" --color "006b75" --description "Passed QA, ready for deploy"
+gh label create "status:deployed" --color "0e8a16" --description "Live in production"
+gh label create "status:blocked" --color "b60205" --description "Waiting on a dependency"
+```
+
+### Area labels (which part — create as needed for your project)
+```bash
+gh label create "area:frontend" --color "c5def5" --description "Frontend / UI"
+gh label create "area:backend" --color "bfdadc" --description "Backend / API"
+gh label create "area:infra" --color "d4c5f9" --description "Infrastructure / CI/CD"
+gh label create "area:docs" --color "fef2c0" --description "Documentation"
+```
+
+### Effort labels (how big — optional)
+```bash
+gh label create "effort:small" --color "0e8a16" --description "< 1 day"
+gh label create "effort:medium" --color "fbca04" --description "1-3 days"
+gh label create "effort:large" --color "d93f0b" --description "3+ days"
+```
+
+### Cleanup: Remove GitHub default labels
+```bash
+gh label delete "bug" --yes
+gh label delete "documentation" --yes
+gh label delete "duplicate" --yes
+gh label delete "enhancement" --yes
+gh label delete "good first issue" --yes
+gh label delete "help wanted" --yes
+gh label delete "invalid" --yes
+gh label delete "question" --yes
+gh label delete "wontfix" --yes
 ```
 
 ## GitHub Issues: Milestone Creation
@@ -117,3 +249,12 @@ gh label create "priority:p2" --color "0e8a16" --description "Normal - fix when 
 ```bash
 gh api repos/{owner}/{repo}/milestones -f title="v1.0" -f description="MVP Release" -f due_on="YYYY-MM-DDT00:00:00Z"
 ```
+
+## Labeling Rules
+
+- **Max 3 labels per issue:** one `type:`, one `priority:`, one `status:`
+- `area:` and `effort:` are optional extras — use when helpful, skip when obvious
+- Every issue MUST have a `type:` label
+- Every issue MUST have a `status:` label
+- Update `status:` label whenever work progresses (don't leave stale statuses)
+- An issue should only have ONE label per category (never two `status:` labels)
