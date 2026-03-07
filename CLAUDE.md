@@ -105,7 +105,8 @@ reports/               Audit reports (same as above)
 6. `/qa` - Test against acceptance criteria
 7. `/security` - OWASP security audit + vulnerability scan
 8. `/deploy` - Deploy + production-ready checks
-9. `/remember` - Save decisions, patterns, or learnings to project context
+9. `/track` - Audit tracking health, sync with GitHub Issues, project overview
+10. `/remember` - Save decisions, patterns, or learnings to project context
 
 ### Apple (Platform = Apple)
 1. `/requirements` - Create feature spec from idea (or initialize new project)
@@ -118,7 +119,8 @@ reports/               Audit reports (same as above)
 8. `/hig-review` - Human Interface Guidelines compliance review
 9. `/apple-build` - Build, test, archive with xcodebuild
 10. `/appstore` - App Store / TestFlight submission
-11. `/remember` - Save decisions, patterns, or learnings to project context
+11. `/track` - Audit tracking health, sync with GitHub Issues, project overview
+12. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 

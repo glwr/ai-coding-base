@@ -62,6 +62,22 @@
 - Run `git diff` to verify what has already been changed in this session
 - Never guess at import paths, component names, or API routes - verify by reading
 
+## Tracking Verification (every skill, before commit)
+Every skill MUST verify tracking before committing. Read the `Tracking` field from `CLAUDE.md`:
+
+**Both variants:**
+- Feature status in `features/INDEX.md` matches the feature spec header
+- Feature spec has been updated with the skill's output section
+
+**GitHub Issues only (additional checks):**
+- Commit message includes the GitHub issue number: `type(PROJ-X): description (#N)`
+- Branch name follows convention: `feat/PROJ-X-name`, `fix/BUG-X-name`, `task/TASK-X-name`
+- If the feature status changed, update the GitHub Issue label too: `gh issue edit <N> --remove-label "status:old" --add-label "status:new"`
+- If work is done on a PR, the PR body references the issue: `Closes #N`
+- Look up issue numbers via: `gh issue list --search "PROJ-X" --json number,title`
+
+If any tracking is incomplete, fix it before committing. If the issue number is unknown, look it up or ask the user.
+
 ## Handoffs Between Skills
 - After completing a skill, suggest the next skill to the user
 - Format: "Next step: Run `/skillname` to [action]"

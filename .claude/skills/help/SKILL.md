@@ -115,7 +115,7 @@ _Apple:_
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /deploy). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /remember, /help).
+- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /deploy). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /track, /remember, /help).
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I create system architecture?" → Explain `/architecture project` mode
 - "How do I save a decision?" → Explain `/remember` workflow
@@ -128,6 +128,8 @@ If the user asked a specific question (via arguments), answer it in the context 
 - "Where are the security reports?" → Point to `reports/security/` directory
 - "How do I track bugs?" → Explain backlog system (`backlog/`, `features/INDEX.md` Backlog table) and tracking variants
 - "What tracking variant am I using?" → Read `Tracking` field from `CLAUDE.md`
+- "Is my tracking clean?" → Suggest running `/track audit` to check for gaps
+- "Show me project status" → Suggest running `/track overview` for a dashboard
 
 ## Output Format
 
