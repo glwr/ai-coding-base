@@ -1,5 +1,30 @@
 # General Project Rules
 
+## Workflow Awareness
+
+At the start of every task, detect the project context by reading `CLAUDE.md`:
+- **Platform** (Web, Apple, Cross-platform) → determines which skills apply
+- **Tracking** (File-based, GitHub Issues) → determines how to track work
+
+### Skill sequences by platform
+
+**Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/qa` → `/security` → `/deploy`
+**Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/appstore`
+**Both:** `/track` (anytime) · `/remember` (anytime) · `/help` (anytime)
+
+### Enforcement rules
+- **Never skip steps.** Each skill has prerequisites. Check the feature spec and INDEX.md to see what has been done:
+  - No `/frontend` or `/apple-ui` without a Tech Design section in the feature spec (added by `/architecture`)
+  - No `/backend` or `/apple-data` without UI implementation (or explicit skip by user)
+  - No `/qa` without implementation done
+  - No `/deploy` or `/apple-build` without QA passed (no Critical/High bugs)
+  - No `/security` without implementation to audit
+- **If a prerequisite is missing:** Tell the user what's missing and suggest the correct skill. Example: "This feature doesn't have a tech design yet. Run `/architecture features/PROJ-X-name.md` first."
+- **If the user asks to do something out of order:** Warn them once, explain the risk, but allow it if they explicitly confirm
+- **When the user gives a general task** (e.g., "build feature X"): Check INDEX.md for the feature's current status and suggest the correct next skill — don't just start coding
+- **When the project is not initialized** (PRD is empty template): Direct to `/requirements` first
+- **Platform-specific skills are NOT interchangeable:** Never use `/frontend` for Apple projects or `/apple-ui` for web projects
+
 ## Feature Tracking
 - All features are tracked in `features/INDEX.md` - read it before starting any work
 - Feature specs live in `features/PROJ-X-feature-name.md`
