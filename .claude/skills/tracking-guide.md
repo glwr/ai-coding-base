@@ -62,10 +62,30 @@ gh issue list --label "type:feature" --search "PROJ-1" --json number,title
 **GitHub Issues:**
 1. Determine next ID from `features/INDEX.md` → "Next Available ID: PROJ-X"
 2. Create feature spec `features/PROJ-X-feature-name.md`
-3. Create GitHub issue:
+3. Create GitHub issue with full content from the feature spec:
    ```bash
-   gh issue create --title "PROJ-X: [feature name]" --label "type:feature,priority:pX,status:planned" --milestone "vX.Y" --body "Feature spec: features/PROJ-X-feature-name.md"
+   gh issue create --title "PROJ-X: [feature name]" --label "type:feature,priority:pX,status:planned" --milestone "vX.Y" --body "$(cat <<'EOF'
+   ## Description
+   [Brief description of the feature and why it matters]
+
+   ## User Stories
+   - [ ] As a [user], I want to [action] so that [goal]
+   - [ ] ...
+
+   ## Acceptance Criteria
+   - [ ] AC-1: [criterion]
+   - [ ] AC-2: [criterion]
+   - [ ] ...
+
+   ## Tech Notes
+   [Key technical decisions, constraints, or dependencies — if known]
+
+   ---
+   📄 Full spec: `features/PROJ-X-feature-name.md`
+   EOF
+   )"
    ```
+   Populate each section from the feature spec. The issue should be self-contained — readers should not need to open the spec file to understand the feature.
 4. Add row to Features table in `features/INDEX.md` (include issue number)
 5. Increment "Next Available ID" counter
 6. If the feature has user stories, create sub-issues (see below)
@@ -78,12 +98,19 @@ User stories are listed in the feature spec file — no separate tracking.
 **GitHub Issues:**
 After creating the parent feature issue, create sub-issues for each user story:
 ```bash
-gh issue create --title "Story: [user story title]" --label "type:story,status:planned" --body "Parent feature: PROJ-X
-As a [user], I want to [action] so that [goal]
+gh issue create --title "Story: [user story title]" --label "type:story,status:planned" --body "$(cat <<'EOF'
+**Parent:** PROJ-X (#N)
 
-Acceptance criteria:
-- [ ] Criterion 1
-- [ ] Criterion 2"
+As a [user], I want to [action] so that [goal].
+
+## Acceptance Criteria
+- [ ] AC-1: [criterion]
+- [ ] AC-2: [criterion]
+
+## Notes
+[Implementation hints, edge cases, or constraints — if any]
+EOF
+)"
 ```
 Then link as sub-issue to the parent:
 ```bash
@@ -142,9 +169,19 @@ Update the feature's row in `features/INDEX.md` Features table. Valid statuses: 
 
 **GitHub Issues:**
 1. Determine next task ID from `features/INDEX.md` → "Next Task ID: TASK-X"
-2. Create issue:
+2. Create issue with full context:
    ```bash
-   gh issue create --title "TASK-X: [title]" --label "type:task,priority:pX,status:open" --milestone "vX.Y" --body "[description]"
+   gh issue create --title "TASK-X: [title]" --label "type:task,priority:pX,status:open" --milestone "vX.Y" --body "$(cat <<'EOF'
+   ## Description
+   [What needs to be done and why]
+
+   ## Details
+   - [Specific steps, files to change, or technical approach]
+
+   ## Related
+   - Feature: PROJ-Y (#N) _(if applicable)_
+   EOF
+   )"
    ```
 3. Also create the local file `backlog/TASK-X-short-name.md` for detailed tracking
 4. Add row to Backlog table in `features/INDEX.md` with issue link
