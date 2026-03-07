@@ -2,12 +2,34 @@
 
 > A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, Release, and Tracking. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
 
+## Prerequisites
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed and authenticated
+- [GitHub CLI](https://cli.github.com/) (`gh`) installed (required for GitHub Issues tracking)
+
 ## Getting Started
 
-1. **Use this template** to create a new repository
-2. Run `/requirements` with a description of your project to initialize PRD + feature specs (sets Platform)
-3. Run `/architecture project` to design the system architecture
-4. Follow the skill workflow:
+### Option A: Use as GitHub Template
+
+1. Click **"Use this template"** on GitHub to create a new repository (requires the repo to be marked as a [template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository))
+2. Clone your new repo and start Claude Code in it
+3. Run `/requirements` with a description of your project to initialize PRD + feature specs
+
+### Option B: Sync into an existing project
+
+Use `sync-base.sh` to pull base files into an existing project without overwriting project-specific files:
+
+```bash
+/path/to/ai-coding-base/sync-base.sh /path/to/your-project
+```
+
+This syncs skills, agents, rules, hooks, and templates — but never touches your `CLAUDE.md`, `features/`, `context/`, `docs/PRD.md`, or source code. Run it again anytime to pull updates from the base repo.
+
+### Then
+
+1. Fill in `CLAUDE.md` — set Platform, tech stack, build commands, tracking variant
+2. Run `/architecture project` to design the system architecture
+3. Follow the skill workflow:
    - **Web:** `/frontend` → `/backend` → `/qa` → `/security` → `/release`
    - **Apple:** `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
 
