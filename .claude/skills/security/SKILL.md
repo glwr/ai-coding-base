@@ -144,4 +144,4 @@ After completion:
 > "Security audit complete. [X findings: Y critical, Z high, ...]"
 > "Full report: `reports/security/YYYY-MM-DD-scope.md`"
 > If issues found: "Fix these issues, then run `/qa` to verify."
-> If clear: "No security issues found. Ready for `/deploy`."
+> If clear: "No security issues found. Ready for `/release`."

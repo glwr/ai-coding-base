@@ -144,14 +144,14 @@ If your context was compacted mid-task:
 
 **Web (Platform = Web):**
 If production-ready:
-> "All tests passed! Next step: Run `/deploy` to deploy this feature to production."
+> "All tests passed! Next step: Run `/release` to prepare the release."
 
 If bugs found:
 > "Found [N] bugs ([severity breakdown]). The developer needs to fix these before deployment. After fixes, run `/qa` again."
 
 **Apple (Platform = Apple):**
 If production-ready:
-> "All tests passed! Next step: Run `/hig-review` for HIG compliance, then `/apple-build` to build and archive."
+> "All tests passed! Next step: Run `/hig-review` for HIG compliance, then `/apple-build` to build and archive, then `/release`."
 
 If bugs found:
 > "Found [N] bugs ([severity breakdown]). The developer needs to fix these. After fixes, run `/qa` again."

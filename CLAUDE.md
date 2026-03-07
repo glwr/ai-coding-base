@@ -1,6 +1,6 @@
 # AI Coding Base
 
-> A workflow template with an AI-powered development process using specialized skills for Requirements, Architecture, Frontend, Backend, QA, and Deployment. Tech-agnostic — define your stack per project.
+> A workflow template with an AI-powered development process using specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, and Release. Tech-agnostic — define your stack per project.
 
 ## Tech Stack
 
@@ -104,7 +104,7 @@ reports/               Audit reports (same as above)
 5. `/backend` - Build APIs, database, access control
 6. `/qa` - Test against acceptance criteria
 7. `/security` - OWASP security audit + vulnerability scan
-8. `/deploy` - Deploy + production-ready checks
+8. `/release` - Pre-release checks, git tag, CI/CD verification, status updates
 9. `/track` - Audit tracking health, sync with GitHub Issues, project overview
 10. `/remember` - Save decisions, patterns, or learnings to project context
 
@@ -118,9 +118,10 @@ reports/               Audit reports (same as above)
 7. `/security` - Security audit (OWASP + Apple platform security)
 8. `/hig-review` - Human Interface Guidelines compliance review
 9. `/apple-build` - Build, test, archive with xcodebuild
-10. `/appstore` - App Store / TestFlight submission
-11. `/track` - Audit tracking health, sync with GitHub Issues, project overview
-12. `/remember` - Save decisions, patterns, or learnings to project context
+10. `/release` - Pre-release checks, git tag, status updates
+11. `/appstore` - App Store / TestFlight submission
+12. `/track` - Audit tracking health, sync with GitHub Issues, project overview
+13. `/remember` - Save decisions, patterns, or learnings to project context
 
 ## Feature Tracking
 

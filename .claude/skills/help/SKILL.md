@@ -29,7 +29,7 @@ Read these files to understand where the project stands:
    - Tech Design section exists (added by /architecture)
    - QA Test Results section exists (added by /qa)
    - Security Audit section exists (added by /security)
-   - Deployment section exists (added by /deploy)
+   - Release section exists (added by /release)
 
 4. **Check Backlog:** Read `features/INDEX.md` Backlog table
    - Any open bugs? → Report count and severity
@@ -100,11 +100,11 @@ _Apple:_
 
 _Web:_
 > Feature PROJ-X has passed QA and is ready for deployment.
-> Run `/deploy` to deploy to production.
+> Run `/release` to prepare the release.
 
 _Apple:_
 > Feature PROJ-X has passed QA and is ready for release.
-> Run `/apple-build` to build and archive, then `/appstore` to submit to App Store / TestFlight.
+> Run `/apple-build` to build and archive, then `/release` to tag and prepare, then `/appstore` to submit.
 
 **If all features are deployed:**
 > All current features are deployed! You can:
@@ -115,14 +115,14 @@ _Apple:_
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /deploy). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /track, /remember, /help).
+- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /release). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /track, /remember, /help).
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I create system architecture?" → Explain `/architecture project` mode
 - "How do I save a decision?" → Explain `/remember` workflow
 - "How do I run a security audit?" → Explain `/security` workflow (scope options, OWASP checks, findings format)
 - "How do I customize this template?" → Point to CLAUDE.md, .claude/rules/, .claude/skills/
 - "What's the project structure?" → Explain the directory layout
-- "How do I deploy?" → Explain `/deploy` workflow and prerequisites
+- "How do I deploy/release?" → Explain `/release` workflow (pre-release checks, CI/CD verification, git tag, status updates)
 - "Where's the API documentation?" → Point to `docs/api.md`
 - "Where's the architecture overview?" → Point to `docs/architecture.md`
 - "Where are the security reports?" → Point to `reports/security/` directory

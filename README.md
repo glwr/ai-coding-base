@@ -1,6 +1,6 @@
 # ai-coding-base
 
-> A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, and Deployment. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
+> A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, Release, and Tracking. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
 
 ## Getting Started
 
@@ -8,8 +8,8 @@
 2. Run `/requirements` with a description of your project to initialize PRD + feature specs (sets Platform)
 3. Run `/architecture project` to design the system architecture
 4. Follow the skill workflow:
-   - **Web:** `/frontend` → `/backend` → `/qa` → `/security` → `/deploy`
-   - **Apple:** `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/appstore`
+   - **Web:** `/frontend` → `/backend` → `/qa` → `/security` → `/release`
+   - **Apple:** `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
 
 ## What's Included
 
@@ -23,6 +23,8 @@
 | `/architecture` | Design architecture — `project` mode (system-wide) or feature mode |
 | `/qa` | Test features against acceptance criteria + security audit |
 | `/security` | OWASP Top 10 security review (5/6-phase audit, includes Apple platform checks) |
+| `/release` | Pre-release checks, CI/CD verification, git tag, changelog, status updates |
+| `/track` | Audit tracking health, sync INDEX.md with GitHub Issues, project dashboard |
 | `/remember` | Save decisions, patterns, or learnings to project context (ADD, SEARCH, REVIEW modes) |
 | `/help` | Context-aware guide — shows where you are and what to do next |
 
@@ -32,7 +34,6 @@
 |-------|-------------|
 | `/frontend` | Build UI components using the project's frontend stack |
 | `/backend` | Build APIs, database schemas, server-side logic |
-| `/deploy` | Deploy with production-ready checks, error tracking, security headers |
 
 #### Apple Skills
 

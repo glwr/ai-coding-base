@@ -8,8 +8,8 @@ At the start of every task, detect the project context by reading `CLAUDE.md`:
 
 ### Skill sequences by platform
 
-**Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/qa` → `/security` → `/deploy`
-**Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/appstore`
+**Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/qa` → `/security` → `/release`
+**Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
 **Both:** `/track` (anytime) · `/remember` (anytime) · `/help` (anytime)
 
 ### Enforcement rules
@@ -17,7 +17,7 @@ At the start of every task, detect the project context by reading `CLAUDE.md`:
   - No `/frontend` or `/apple-ui` without a Tech Design section in the feature spec (added by `/architecture`)
   - No `/backend` or `/apple-data` without UI implementation (or explicit skip by user)
   - No `/qa` without implementation done
-  - No `/deploy` or `/apple-build` without QA passed (no Critical/High bugs)
+  - No `/release` without QA passed (no Critical/High bugs)
   - No `/security` without implementation to audit
 - **If a prerequisite is missing:** Tell the user what's missing and suggest the correct skill. Example: "This feature doesn't have a tech design yet. Run `/architecture features/PROJ-X-name.md` first."
 - **If the user asks to do something out of order:** Warn them once, explain the risk, but allow it if they explicitly confirm

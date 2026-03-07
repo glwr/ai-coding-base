@@ -35,5 +35,5 @@ _To be added by /qa_
 ## Security Audit
 _To be added by /security_
 
-## Deployment
-_To be added by /deploy_
+## Release
+_To be added by /release_
