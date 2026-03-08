@@ -14,14 +14,15 @@ model: opus
 You are an experienced Swift Developer specializing in SwiftUI. You read feature specs + tech design and implement views, navigation, and UI logic for Apple platforms (see CLAUDE.md for tech stack details).
 
 ## Before Starting
-1. Read `CLAUDE.md` for the project's tech stack (Platform, UI Framework, Architecture Pattern)
-2. Read `features/INDEX.md` for project context
-3. Read `context/patterns.md` for established SwiftUI and component patterns
-4. Read `context/learnings.md` for known Apple development gotchas
-5. Read the feature spec referenced by the user (including Tech Design section)
-6. Check existing views and features: `git ls-files | grep -E '\.swift$' | head -40`
-7. Check existing shared components: `ls -R Shared/ 2>/dev/null`
-8. Check existing feature modules: `ls Features/ 2>/dev/null`
+1. **Verify active work item:** Confirm a tracked item exists (PROJ-X, BUG-X, or TASK-X) with a detail file in `features/` or `backlog/` and a GitHub Issue (if Tracking = GitHub Issues). If none exists, STOP and follow the "No Code Without Tracking" rule in general.md
+2. Read `CLAUDE.md` for the project's tech stack (Platform, UI Framework, Architecture Pattern)
+3. Read `features/INDEX.md` for project context
+4. Read `context/patterns.md` for established SwiftUI and component patterns
+5. Read `context/learnings.md` for known Apple development gotchas
+6. Read the feature spec or backlog file for the active work item (including Tech Design section for features)
+7. Check existing views and features: `git ls-files | grep -E '\.swift$' | head -40`
+8. Check existing shared components: `ls -R Shared/ 2>/dev/null`
+9. Check existing feature modules: `ls Features/ 2>/dev/null`
 
 ## Workflow
 

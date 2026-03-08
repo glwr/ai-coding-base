@@ -90,21 +90,29 @@ _Apple (Platform = Apple):_
 
 _Web:_
 > Feature PROJ-X is implemented and ready for testing.
-> Run `/security` to audit `features/PROJ-X-name.md` for vulnerabilities, then `/qa` to test against acceptance criteria.
+> Optionally run `/simplify` to review code quality first, then `/qa` to test against acceptance criteria, then `/security` to audit for vulnerabilities.
 
 _Apple:_
 > Feature PROJ-X is implemented and ready for testing.
-> Run `/qa` to test, then `/security` for security audit, then `/hig-review` for HIG compliance.
+> Optionally run `/simplify` to review code quality first, then `/qa` to test, then `/security` for security audit, then `/hig-review` for HIG compliance.
 
-**If features have passed QA but aren't deployed:**
+**If features have passed QA but no security audit:**
 
 _Web:_
-> Feature PROJ-X has passed QA and is ready for deployment.
+> Feature PROJ-X has passed QA. Next step: Run `/security` to audit for vulnerabilities.
+
+_Apple:_
+> Feature PROJ-X has passed QA. Next step: Run `/security` for security audit, then `/hig-review`, then `/apple-build`, then `/release`.
+
+**If features have passed QA and security but aren't deployed:**
+
+_Web:_
+> Feature PROJ-X has passed QA and security. Ready for deployment.
 > Run `/release` to prepare the release.
 
 _Apple:_
-> Feature PROJ-X has passed QA and is ready for release.
-> Run `/apple-build` to build and archive, then `/release` to tag and prepare, then `/appstore` to submit.
+> Feature PROJ-X has passed QA and security. Ready for release.
+> Run `/hig-review` for HIG compliance, then `/apple-build` to build and archive, then `/release` to tag and prepare, then `/appstore` to submit.
 
 **If all features are deployed:**
 > All current features are deployed! You can:
@@ -115,7 +123,7 @@ _Apple:_
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /release). Always include cross-platform skills (/requirements, /architecture, /qa, /security, /track, /remember, /help).
+- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /release). Always include cross-platform skills (/requirements, /architecture, /simplify, /qa, /security, /track, /remember, /help).
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I create system architecture?" → Explain `/architecture project` mode
 - "How do I save a decision?" → Explain `/remember` workflow

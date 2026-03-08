@@ -21,8 +21,8 @@
 
 ## Current Release: v1.0
 
-| Order | ID | Feature | Owner | Status | Issue | Spec | Created |
-|-------|----|---------|-------|--------|-------|------|---------|
+| Order | ID | Feature | Issue | Owner | Status | Spec | Created |
+|-------|----|---------|-------|-------|--------|------|---------|
 
 <!-- Add features above this line -->
 <!-- Issue column: leave empty for File-based tracking, add #N link for GitHub Issues -->
@@ -33,8 +33,8 @@
 
 ## Backlog
 
-| ID | Type | Title | Priority | Status | Issue | Related | Created |
-|----|------|-------|----------|--------|-------|---------|---------|
+| ID | Type | Title | Issue | Priority | Status | Related | Created |
+|----|------|-------|-------|----------|--------|---------|---------|
 
 <!-- Add bugs and tasks above this line -->
 <!-- Issue column: leave empty for File-based tracking, add #N link for GitHub Issues -->

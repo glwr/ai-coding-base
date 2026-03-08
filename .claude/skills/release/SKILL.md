@@ -1,6 +1,6 @@
 ---
 name: release
-description: Prepare a release — pre-release checks, CI/CD verification, git tag, changelog, status updates. Works for Web (GitHub Actions) and Apple (before /appstore).
+description: Prepare a release — pre-release checks, documentation sync, CI/CD verification, git tag, changelog, status updates. Works for Web (GitHub Actions) and Apple (before /appstore).
 argument-hint: [feature-spec-path or milestone e.g. "v1.0"]
 user-invocable: true
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
@@ -113,7 +113,19 @@ If no `CHANGELOG.md` exists, ask if the user wants one created.
 git tag -a vX.Y.Z -m "Release vX.Y.Z: [summary]"
 ```
 
-### 4. Update Tracking
+### 4. Documentation Sync (Mandatory)
+
+Before updating tracking, verify documentation is current:
+
+- [ ] `docs/PRD.md` — Roadmap table reflects current feature statuses
+- [ ] `docs/api.md` — Any new or changed API endpoints documented
+- [ ] `docs/architecture.md` — Updated if architecture changed (new components, data flows)
+- [ ] `context/decisions.md` — Any significant decisions from this release cycle captured
+- [ ] `context/learnings.md` — Any gotchas or debugging insights captured
+
+For each outdated document, update it or ask the user to confirm what changed. Skip documents that are already current.
+
+### 5. Update Tracking
 
 Read `.claude/skills/tracking-guide.md` and follow the matching variant:
 
@@ -137,7 +149,7 @@ Read `.claude/skills/tracking-guide.md` and follow the matching variant:
 - Check if any bugs/tasks were fixed in this release
 - Close them in tracking (file + GitHub Issues if applicable)
 
-### 5. Push
+### 6. Push
 
 Ask user for confirmation, then:
 ```bash
@@ -147,7 +159,18 @@ git push origin vX.Y.Z
 **Web projects:** This typically triggers GitHub Actions for deployment.
 **Apple projects:** Suggest running `/appstore` next for App Store submission.
 
-### 6. Post-Release Summary
+### 6b. Post-Push: Mark as Deployed
+
+**IMMEDIATELY after push**, update ALL statuses to Deployed:
+- Feature spec headers: `## Status: Deployed`
+- `features/INDEX.md`: Status column → Deployed
+- `docs/PRD.md`: Roadmap table → Deployed
+- GitHub Issue labels (if applicable): `status:done` → `status:deployed`
+
+> Push to main = deployed (when CI/CD auto-deploys). Never leave features at "Done" after pushing.
+> If deployment is manual (no CI/CD), mark as "Done" now and update to "Deployed" after the user confirms deployment.
+
+### 7. Post-Release Summary
 
 Present a release summary:
 ```
@@ -212,10 +235,12 @@ If this is the project's first release, guide the user through:
 - [ ] Version number confirmed with user
 - [ ] Git tag created
 - [ ] Changelog updated (if applicable)
+- [ ] Documentation sync completed (PRD, api.md, architecture, decisions, learnings)
 - [ ] All feature statuses updated to Deployed
 - [ ] Milestone closed (if milestone release)
 - [ ] GitHub Issues synced (if applicable)
 - [ ] Tag pushed to remote
+- [ ] Post-push status updates done (Deployed, not Done)
 - [ ] Release summary presented to user
 
 ## Context Updates

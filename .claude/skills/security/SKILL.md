@@ -143,5 +143,5 @@ Show context updates to the user for approval before writing.
 After completion:
 > "Security audit complete. [X findings: Y critical, Z high, ...]"
 > "Full report: `reports/security/YYYY-MM-DD-scope.md`"
-> If issues found: "Fix these issues, then run `/qa` to verify."
+> If issues found: "Fix these issues, then re-run `/qa` to verify nothing broke, and `/security` to confirm fixes."
 > If clear: "No security issues found. Ready for `/release`."

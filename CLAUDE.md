@@ -102,11 +102,10 @@ reports/               Audit reports (same as above)
 3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
 4. `/frontend` - Build UI components
 5. `/backend` - Build APIs, database, access control
-6. `/qa` - Test against acceptance criteria
-7. `/security` - OWASP security audit + vulnerability scan
-8. `/release` - Pre-release checks, git tag, CI/CD verification, status updates
-9. `/track` - Audit tracking health, sync with GitHub Issues, project overview
-10. `/remember` - Save decisions, patterns, or learnings to project context
+6. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+7. `/qa` - Test against acceptance criteria
+8. `/security` - OWASP security audit + vulnerability scan
+9. `/release` - Pre-release checks, documentation sync, git tag, CI/CD verification, status updates
 
 ### Apple (Platform = Apple)
 1. `/requirements` - Create feature spec from idea (or initialize new project)
@@ -114,18 +113,22 @@ reports/               Audit reports (same as above)
 3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
 4. `/apple-ui` - Build SwiftUI views and navigation
 5. `/apple-data` - Build data models, persistence, networking
-6. `/qa` - Test against acceptance criteria (simulator + accessibility)
-7. `/security` - Security audit (OWASP + Apple platform security)
-8. `/hig-review` - Human Interface Guidelines compliance review
-9. `/apple-build` - Build, test, archive with xcodebuild
-10. `/release` - Pre-release checks, git tag, status updates
-11. `/appstore` - App Store / TestFlight submission
-12. `/track` - Audit tracking health, sync with GitHub Issues, project overview
-13. `/remember` - Save decisions, patterns, or learnings to project context
+6. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+7. `/qa` - Test against acceptance criteria (simulator + accessibility)
+8. `/security` - Security audit (OWASP + Apple platform security)
+9. `/hig-review` - Human Interface Guidelines compliance review
+10. `/apple-build` - Build, test, archive with xcodebuild
+11. `/release` - Pre-release checks, documentation sync, git tag, status updates
+12. `/appstore` - App Store / TestFlight submission
+
+### Available anytime (not sequential)
+`/track` · `/remember` · `/help`
 
 ## Feature Tracking
 
-All features tracked in `features/INDEX.md`. Every skill reads it at start and updates it when done. Feature specs live in `features/PROJ-X-name.md`.
+All features tracked in `features/INDEX.md`. Every skill reads it at start and updates it when done. Feature specs live in `features/PROJ-X-name.md`. Bugs and tasks are tracked in `backlog/` with corresponding entries in INDEX.md.
+
+**No Code Without Tracking:** Every code change requires an active tracked work item (PROJ-X, BUG-X, or TASK-X) with a detail file and GitHub Issue (when Tracking = GitHub Issues). Work items are auto-classified and created before any code is written.
 
 ## Key Conventions
 

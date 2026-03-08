@@ -49,6 +49,45 @@ gh issue list --label "type:feature" --search "PROJ-1" --json number,title
 
 ---
 
+## GitHub Issue Lifecycle (GitHub Issues variant only)
+
+Each skill progressively updates the GitHub Issue body as work progresses. This keeps issues as a living document — not a stale snapshot from requirements.
+
+### Per-Skill Updates — Features
+
+| Skill | Issue Body Update |
+|-------|------------------|
+| `/requirements` | Create issue with full spec (user stories, ACs, tech notes) |
+| `/architecture` | Add or update Tech Design section in the issue body |
+| `/frontend` / `/backend` | Update Tech Notes if implementation differs from design |
+| `/qa` | Add QA Results section (pass/fail, bugs found) |
+| `/security` | Add Security Audit section (findings summary, report link) |
+| `/release` | Final update: check all AC/story checkboxes, add implementation notes, close issue |
+
+### Per-Skill Updates — Bugs and Tasks
+
+| Step | Issue Body Update |
+|------|------------------|
+| Creation / Reopen | Create or reopen issue with description, steps to reproduce (bugs), scope (tasks) |
+| `/frontend` / `/backend` | Add comment with fix details, files changed |
+| `/qa` | Add comment with verification result (pass/fail, regression check) |
+| `/security` | Add comment with security impact assessment (if applicable) |
+| `/release` | Close issue with summary comment of what was fixed/done |
+
+### Why Every Skill Updates the Issue Body
+GitHub Issues are the primary view for the team. Feature specs and backlog files (`.md` files) are the detailed source of truth, but the issue body/comments must stay current so anyone can check status without opening the repo.
+
+### What "Final Update" Means at `/release`
+Before closing an issue at release time:
+- Check all user story checkboxes as completed
+- Check all AC checkboxes
+- Update Tech Notes with actual implementation (remove speculation)
+- Add "Implementation Notes" section with key decisions or surprises
+- Add "Files Changed" section listing major files
+- Remove any outdated information
+
+---
+
 ## Operations
 
 ### Create Feature
@@ -217,6 +256,30 @@ Both variants: Read `features/INDEX.md` → "Next Available ID: PROJ-X" and use 
 1. Close the issue: `gh issue close <number> --reason completed`
 2. Update the local backlog file status
 3. Update `features/INDEX.md` Backlog table
+
+---
+
+### Reopen Bug/Task/Feature
+
+Use this when a closed item needs rework (bug resurfaced, feature needs changes, task incomplete).
+
+**File-based:**
+1. Update status in the detail file header back to `Open` or `In Progress`
+2. Add a new section to the detail file documenting why it was reopened and what changed
+3. Update status in `features/INDEX.md` (Features table or Backlog table)
+
+**GitHub Issues:**
+1. Reopen the issue with context:
+   ```bash
+   gh issue reopen <number> --comment "Reopened: [reason — e.g., bug resurfaced after X, feature needs rework for Y]"
+   ```
+2. Update labels: `gh issue edit <number> --remove-label "status:closed" --add-label "status:open"`
+3. Update the local detail file (add reopened context)
+4. Update `features/INDEX.md` status back to Open/In Progress
+5. New commits reference the same issue number: `fix(BUG-X): description (#N)`
+6. When resolved again, close the issue with a summary of the additional fix
+
+> **Prefer reopening over creating duplicates.** If the same bug, same feature area, or same task scope applies, reopen the existing item. Only create a new item if the scope is genuinely different.
 
 ---
 

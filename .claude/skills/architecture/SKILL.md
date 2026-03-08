@@ -164,13 +164,18 @@ Add a "Tech Design (Solution Architect)" section to `/features/PROJ-X.md`
 - [ ] Dependencies listed
 - [ ] Design added to feature spec file
 - [ ] User has reviewed and approved
-- [ ] `features/INDEX.md` status updated to "In Progress"
+- [ ] `features/INDEX.md` status updated to "Ready"
 
 ### Feature Mode Handoff
 After approval, tell the user:
+
+**Web (Platform = Web):**
 > "Design is ready! Next step: Run `/frontend` to build the UI components for this feature."
->
 > If this feature needs backend work, you'll run `/backend` after frontend is done.
+
+**Apple (Platform = Apple):**
+> "Design is ready! Next step: Run `/apple-ui` to build the SwiftUI views for this feature."
+> If this feature needs data/networking work, you'll run `/apple-data` after UI is done.
 
 ### Feature Mode Git Commit
 ```
