@@ -1,6 +1,6 @@
 # ai-coding-base
 
-> A workflow template for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, Release, and Tracking. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
+> A [GitHub template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) for AI-powered development with Claude Code. Includes specialized skills for Requirements, Architecture, Frontend, Backend, QA, Security, Release, and Tracking. Supports both Web and Apple (iOS/macOS) platforms. Tech-agnostic — define your stack per project.
 
 ## Prerequisites
 
@@ -9,11 +9,12 @@
 
 ## Getting Started
 
-### Option A: Use as GitHub Template
+### Option A: Use as GitHub Template (recommended)
 
-1. Click **"Use this template"** on GitHub to create a new repository (requires the repo to be marked as a [template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository))
-2. Clone your new repo and start Claude Code in it
-3. Run `/requirements` with a description of your project to initialize PRD + feature specs
+This repo is a **GitHub template repository**. Click **"Use this template"** → **"Create a new repository"** on GitHub to create your own project from it. Then:
+
+1. Clone your new repo and start Claude Code in it
+2. Run `/requirements` with a description of your project to initialize PRD + feature specs
 
 ### Option B: Sync into an existing project
 
@@ -29,9 +30,11 @@ This syncs skills, agents, rules, hooks, and templates — but never touches you
 
 1. Fill in `CLAUDE.md` — set Platform, tech stack, build commands, tracking variant
 2. Run `/architecture project` to design the system architecture
-3. Follow the skill workflow:
-   - **Web:** `/frontend` → `/backend` → `/qa` → `/security` → `/release`
-   - **Apple:** `/apple-ui` → `/apple-data` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
+3. Follow the mandatory skill workflow:
+   - **Features (Web):** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/simplify` → `/qa` → `/security` → `/release`
+   - **Features (Apple):** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/simplify` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
+   - **Bugs & Tasks:** Create/reopen tracking → implement via skill → `/qa` → `/security` → `/release`
+   - **Anytime:** `/track` · `/remember` · `/help`
 
 ## What's Included
 
@@ -43,9 +46,10 @@ This syncs skills, agents, rules, hooks, and templates — but never touches you
 |-------|-------------|
 | `/requirements` | Create feature specs or initialize a new project (PRD + features) |
 | `/architecture` | Design architecture — `project` mode (system-wide) or feature mode |
+| `/simplify` | Review changed code for reuse, quality, and efficiency (optional, recommended) |
 | `/qa` | Test features against acceptance criteria + security audit |
 | `/security` | OWASP Top 10 security review (5/6-phase audit, includes Apple platform checks) |
-| `/release` | Pre-release checks, CI/CD verification, git tag, changelog, status updates |
+| `/release` | Pre-release checks, documentation sync, CI/CD verification, git tag, status updates |
 | `/track` | Audit tracking health, sync INDEX.md with GitHub Issues, project dashboard |
 | `/remember` | Save decisions, patterns, or learnings to project context (ADD, SEARCH, REVIEW modes) |
 | `/help` | Context-aware guide — shows where you are and what to do next |
@@ -94,8 +98,12 @@ Agents are defined in `.claude/agents/` and invoked by their respective skills.
 | `apple-project.md` | Editing Xcode project, Package.swift, plists, entitlements | Apple |
 
 Key rules enforced by `general.md`:
-- **No command chaining** — Never use `&&`, `||`, or `;` in Bash calls (permission checks may reject chained commands). Use separate Bash calls instead.
-- **Git conventions** — Commit format `type(PROJ-X): description`, sequential feature IDs
+- **No Code Without Tracking** — Every code change requires an active work item (PROJ-X, BUG-X, or TASK-X) with detail file, INDEX.md entry, and GitHub Issue. Auto-classified, auto-created. Closed items are reopened instead of duplicated
+- **No Direct Code Edits** — Source code only modified through skills (`/frontend`, `/backend`, `/apple-ui`, `/apple-data`), never raw edits
+- **Mandatory QA + Security** — `/qa` and `/security` are never optional, even for one-line bug fixes
+- **No command chaining** — Never use `&&`, `||`, or `;` in Bash calls. Use separate Bash calls instead
+- **Git conventions** — Commit format `type(PROJ-X): description (#N)`, sequential feature IDs
+- **Tracking verification** — Checkbox-based checklist before every commit (work item, detail file, INDEX.md, GitHub Issue)
 - **Context management** — Skills read/write `context/` files, decisions are append-only
 - **English only** — All written output in English (code, docs, commits, specs, UI text)
 
