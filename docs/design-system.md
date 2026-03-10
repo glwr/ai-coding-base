@@ -2,6 +2,15 @@
 
 > Brand guidelines, design tokens, and component styling conventions. Fill in when establishing the visual identity.
 
+## Aesthetic Direction
+
+_Define the overall visual identity:_
+
+- **Style:** _TBD_ _(modern/minimal, corporate, playful, brutalist, glassmorphism, etc.)_
+- **Mood:** _TBD_ _(clean & professional, warm & friendly, bold & energetic, etc.)_
+- **Reference:** _TBD_ _(URLs, app names, or screenshots for visual inspiration)_
+- **Density:** _TBD_ _(compact, comfortable, spacious)_
+
 ## Brand Colors
 
 _Define the core color palette:_
@@ -84,6 +93,18 @@ _Describe how fonts are loaded (Google Fonts, self-hosted, framework optimizatio
 | `--shadow-md` | _0 4px 6px rgba(0,0,0,0.1)_ | _Cards, dropdowns_ |
 | `--shadow-lg` | _0 10px 15px rgba(0,0,0,0.1)_ | _Modals, popovers_ |
 
+## Dark Mode
+
+_Define color overrides for dark mode (skip if using framework automatic dark mode):_
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--color-background` | _#FFFFFF_ | _#0F172A_ |
+| `--color-surface` | _#F8FAFC_ | _#1E293B_ |
+| `--color-text` | _#1E293B_ | _#F1F5F9_ |
+| `--color-text-muted` | _#64748B_ | _#94A3B8_ |
+| `--color-border` | _#E2E8F0_ | _#334155_ |
+
 ## Breakpoints
 
 | Name | Width | Target |
@@ -92,6 +113,30 @@ _Describe how fonts are loaded (Google Fonts, self-hosted, framework optimizatio
 | `md` | _768px_ | _Tablet_ |
 | `lg` | _1024px_ | _Desktop_ |
 | `xl` | _1280px_ | _Wide desktop_ |
+
+## Layout Conventions
+
+_Define structural layout patterns:_
+
+- **Navigation:** _TBD_ _(sidebar, top-nav, bottom-tab, hamburger)_
+- **Content Width:** _TBD_ _(full-bleed, max-width container, centered)_
+- **Grid:** _TBD_ _(CSS Grid columns, gap sizes, or auto-layout)_
+- **Card vs List:** _TBD_ _(when to use cards vs flat lists)_
+- **Modal vs Page:** _TBD_ _(when to use modal vs full-page transition)_
+
+## Design Do's & Don'ts
+
+### Do
+- _Use consistent spacing from the token scale_
+- _Group related actions (max 3 primary actions per view)_
+- _Use progressive disclosure for complex forms_
+- _Maintain clear visual hierarchy (one primary CTA per section)_
+
+### Don't
+- _Mix rounded and sharp corners in the same context_
+- _Use more than 2 font weights per component_
+- _Hardcode color, spacing, or font-size values instead of tokens_
+- _Create custom UI components when the component library has one_
 
 ## Component Tokens
 
@@ -148,6 +193,18 @@ export const colors = {
   // ...
 } as const;
 ```
+
+## Apple-Specific Tokens
+
+_Fill in when Platform = Apple:_
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `accent-color` | _AccentColor asset_ | _Tint color for controls_ |
+| `min-touch-target` | _44x44pt_ | _Minimum tap area (HIG requirement)_ |
+| `corner-style` | _continuous_ | _iOS continuous corners vs circular_ |
+| `default-padding` | _16pt_ | _Standard content padding_ |
+| `list-row-height` | _44pt_ | _Minimum list row height_ |
 
 ---
 

@@ -162,6 +162,36 @@ lsof -ti:3000 | xargs kill
 rm -rf node_modules && npm install
 ```
 
+## Recommended MCP Servers
+
+_Optional MCP servers that enhance the development workflow. Configure per project as needed._
+
+### Playwright MCP (Visual Design Review)
+
+Enables automated screenshot capture for the `/design-review` skill. Claude Code can navigate the running app, take screenshots, and visually verify UI against the design system.
+
+```bash
+claude mcp add playwright -- npx @playwright/mcp@latest
+```
+
+**Requires:** Node.js (no project dependency needed — npx handles it)
+**Used by:** `/design-review` skill
+
+### Figma MCP (Design Token Sync)
+
+Gives Claude Code direct access to Figma design data — variables, tokens, components, and variants. Useful for syncing design tokens into `docs/design-system.md`.
+
+```bash
+# Remote (recommended — no local install)
+claude mcp add figma --url https://mcp.figma.com/mcp
+
+# Or via Figma Desktop app
+claude mcp add figma --launch "Figma Desktop MCP"
+```
+
+**Requires:** Figma account with file access
+**Used by:** Manual token sync to `docs/design-system.md`, `/design-review` (optional Figma comparison)
+
 ---
 
 _Last updated: YYYY-MM-DD_

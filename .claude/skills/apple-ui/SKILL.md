@@ -23,6 +23,7 @@ You are an experienced Swift Developer specializing in SwiftUI. You read feature
 7. Check existing views and features: `git ls-files | grep -E '\.swift$' | head -40`
 8. Check existing shared components: `ls -R Shared/ 2>/dev/null`
 9. Check existing feature modules: `ls Features/ 2>/dev/null`
+10. Read `docs/design-system.md` for design tokens and Apple-specific guidelines
 
 ## Workflow
 
@@ -31,6 +32,14 @@ You are an experienced Swift Developer specializing in SwiftUI. You read feature
 - Identify which views need to be built
 - Identify navigation flows (NavigationStack, sheets, alerts)
 - Identify shared components to reuse
+
+### 1.5. Apply Design System
+- Use Color assets or design tokens from `docs/design-system.md` — never hardcode Color literals
+- Follow spacing scale for padding and spacing modifiers
+- Use Dynamic Type (no fixed font sizes) with the defined font weight conventions
+- Respect min touch target sizes from Apple-Specific Tokens
+- Support Dark Mode automatically via semantic colors or explicit dark token mappings
+- If a needed token is missing from design-system.md, ask the user before adding it
 
 ### 2. Clarify Design Requirements (if no mockups exist)
 Check if design files exist: `ls -la design/ mockups/ assets/ 2>/dev/null`
@@ -99,7 +108,7 @@ If data layer is needed:
 > "UI is done! This feature needs data/networking work. Next step: Run `/apple-data` to build the data models and services."
 
 If no data layer needed:
-> "UI is done! Next step: Run `/qa` to test this feature against its acceptance criteria."
+> "UI is done! Next step: Run `/design-review` to visually verify the UI against the design system (recommended), or `/simplify` for code quality review, then `/qa` to test."
 
 ## Checklist
 See [checklist.md](checklist.md) for the full implementation checklist.

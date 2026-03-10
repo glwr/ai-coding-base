@@ -17,6 +17,7 @@ _Fill in when starting a new project:_
 - **Validation:** _TBD_
 - **State Management:** _TBD_
 - **Tracking:** _TBD_ _(File-based | GitHub Issues)_
+- **Design Source:** _TBD_ _(Manual | Figma)_
 
 _Apple-specific (fill in when Platform = Apple):_
 
@@ -48,6 +49,7 @@ docs/
 backlog/            Bug reports and technical tasks (BUG-X, TASK-X)
 reports/
   security/         Security audit reports (YYYY-MM-DD-scope.md)
+  design/           Design review reports (YYYY-MM-DD-scope.md)
 ```
 
 ### Monorepo (optional)
@@ -102,10 +104,11 @@ reports/               Audit reports (same as above)
 3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
 4. `/frontend` - Build UI components
 5. `/backend` - Build APIs, database, access control
-6. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
-7. `/qa` - Test against acceptance criteria
-8. `/security` - OWASP security audit + vulnerability scan
-9. `/release` - Pre-release checks, documentation sync, git tag, CI/CD verification, status updates
+6. `/design-review` - Visual review via screenshots against design-system.md (optional, recommended)
+7. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+8. `/qa` - Test against acceptance criteria
+9. `/security` - OWASP security audit + vulnerability scan
+10. `/release` - Pre-release checks, documentation sync, git tag, CI/CD verification, status updates
 
 ### Apple (Platform = Apple)
 1. `/requirements` - Create feature spec from idea (or initialize new project)
@@ -113,16 +116,17 @@ reports/               Audit reports (same as above)
 3. `/architecture features/PROJ-X.md` - Design tech architecture for a feature
 4. `/apple-ui` - Build SwiftUI views and navigation
 5. `/apple-data` - Build data models, persistence, networking
-6. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
-7. `/qa` - Test against acceptance criteria (simulator + accessibility)
-8. `/security` - Security audit (OWASP + Apple platform security)
-9. `/hig-review` - Human Interface Guidelines compliance review
-10. `/apple-build` - Build, test, archive with xcodebuild
-11. `/release` - Pre-release checks, documentation sync, git tag, status updates
-12. `/appstore` - App Store / TestFlight submission
+6. `/design-review` - Visual review via screenshots against design-system.md (optional, recommended)
+7. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+8. `/qa` - Test against acceptance criteria (simulator + accessibility)
+9. `/security` - Security audit (OWASP + Apple platform security)
+10. `/hig-review` - Human Interface Guidelines compliance review
+11. `/apple-build` - Build, test, archive with xcodebuild
+12. `/release` - Pre-release checks, documentation sync, git tag, status updates
+13. `/appstore` - App Store / TestFlight submission
 
 ### Available anytime (not sequential)
-`/track` · `/remember` · `/help`
+`/track` · `/remember` · `/help` · `/design-review`
 
 ## Feature Tracking
 

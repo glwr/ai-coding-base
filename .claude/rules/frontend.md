@@ -33,6 +33,14 @@ paths:
 - Keep components small and focused
 - Use TypeScript interfaces for all props
 
+## Design Token Enforcement
+- All colors, spacing, font sizes, border radii, and shadows MUST reference design tokens from `docs/design-system.md`
+- Flag any hardcoded color values (hex, rgb, hsl) that should use design tokens
+- Flag any hardcoded spacing values (px, rem) that have a matching token
+- Flag any hardcoded font-size or font-weight that should reference a token
+- Flag inconsistent border-radius values across components
+- When reviewing code (`/simplify`): check all changed files for token violations
+
 ## Auth Best Practices
 - Use full-page navigation for post-login redirects when needed (avoids stale state)
 - Always verify session exists before redirecting

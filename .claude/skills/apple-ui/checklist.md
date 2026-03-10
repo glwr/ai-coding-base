@@ -11,6 +11,15 @@ Before marking UI implementation as complete:
 - [ ] Design preferences clarified with user (if no mockups)
 - [ ] View hierarchy from Solution Architect followed
 
+## Design System Compliance
+- [ ] All colors use Color assets or semantic colors (no hardcoded Color literals)
+- [ ] Spacing uses consistent values from design token scale
+- [ ] Typography uses Dynamic Type with defined weight conventions
+- [ ] Touch targets meet minimum size (44x44pt)
+- [ ] Dark Mode works correctly with semantic or asset-based colors
+- [ ] Layout follows conventions from design-system.md
+- [ ] Aesthetic direction matches the defined style/mood
+
 ## Implementation
 - [ ] All planned views implemented
 - [ ] Architecture pattern followed (MVVM / TCA / as specified)

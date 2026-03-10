@@ -90,11 +90,11 @@ _Apple (Platform = Apple):_
 
 _Web:_
 > Feature PROJ-X is implemented and ready for testing.
-> Optionally run `/simplify` to review code quality first, then `/qa` to test against acceptance criteria, then `/security` to audit for vulnerabilities.
+> Optionally run `/design-review` to visually verify the UI, then `/simplify` to review code quality, then `/qa` to test against acceptance criteria, then `/security` to audit for vulnerabilities.
 
 _Apple:_
 > Feature PROJ-X is implemented and ready for testing.
-> Optionally run `/simplify` to review code quality first, then `/qa` to test, then `/security` for security audit, then `/hig-review` for HIG compliance.
+> Optionally run `/design-review` to visually verify the UI, then `/simplify` to review code quality, then `/qa` to test, then `/security` for security audit, then `/hig-review` for HIG compliance.
 
 **If features have passed QA but no security audit:**
 
@@ -123,7 +123,7 @@ _Apple:_
 
 If the user asked a specific question (via arguments), answer it in the context of the current project state. Common questions:
 
-- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /release). Always include cross-platform skills (/requirements, /architecture, /simplify, /qa, /security, /track, /remember, /help).
+- "What skills are available?" → List all skills with brief descriptions. For Apple projects, include Apple-specific skills (/apple-ui, /apple-data, /apple-build, /appstore, /hig-review). For web, include web skills (/frontend, /backend, /release). Always include cross-platform skills (/requirements, /architecture, /design-review, /simplify, /qa, /security, /track, /remember, /help).
 - "How do I add a new feature?" → Explain `/requirements` workflow
 - "How do I create system architecture?" → Explain `/architecture project` mode
 - "How do I save a decision?" → Explain `/remember` workflow

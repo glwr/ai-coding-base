@@ -22,6 +22,15 @@ Before marking frontend as complete:
 - [ ] Error states implemented (user-friendly error messages)
 - [ ] Empty states implemented ("No data yet" messages)
 
+## Design System Compliance
+- [ ] All colors reference design tokens (no hardcoded hex values)
+- [ ] All spacing uses token scale (no arbitrary px/rem values)
+- [ ] Typography uses defined font sizes and weights
+- [ ] Border radius uses token values
+- [ ] Dark mode works correctly (if design-system.md defines dark tokens)
+- [ ] Layout follows conventions from design-system.md (navigation, grid, density)
+- [ ] Aesthetic direction matches the defined style/mood
+
 ## Quality
 - [ ] Responsive: Mobile, Tablet, Desktop
 - [ ] Accessibility: Semantic HTML, ARIA labels, keyboard navigation

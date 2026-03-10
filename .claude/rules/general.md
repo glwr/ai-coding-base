@@ -9,8 +9,8 @@ At the start of every task, detect the project context by reading `CLAUDE.md`:
 ### Mandatory skill sequences (in order, do not skip)
 
 **Features (new functionality):**
-- **Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/simplify` → `/qa` → `/security` → `/release`
-- **Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/simplify` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
+- **Web:** `/requirements` → `/architecture` → `/frontend` → `/backend` → `/design-review` → `/simplify` → `/qa` → `/security` → `/release`
+- **Apple:** `/requirements` → `/architecture` → `/apple-ui` → `/apple-data` → `/design-review` → `/simplify` → `/qa` → `/security` → `/hig-review` → `/apple-build` → `/release` → `/appstore`
 
 **Bugs and Tasks (fixes, refactors, chores):**
 - Create/reopen tracking (detail file + INDEX.md + GitHub Issue) → implement fix → `/simplify` → `/qa` → `/security` → `/release`
@@ -20,7 +20,7 @@ At the start of every task, detect the project context by reading `CLAUDE.md`:
 
 ### Available anytime (not sequential)
 
-`/track` · `/remember` · `/help`
+`/track` · `/remember` · `/help` · `/design-review`
 
 ### No Code Without Tracking (hard rule)
 
@@ -79,6 +79,7 @@ The ONLY code files exempt from this rule are:
   - No `/qa` without implementation done
   - No `/release` without QA passed (no Critical/High bugs)
   - No `/security` without implementation to audit
+- **`/design-review` is optional but recommended** after `/frontend` or `/apple-ui`. Requires a running app (dev server or simulator). If skipped, proceed without warning
 - **`/simplify` is optional but recommended.** If the user skips it, proceed to `/qa` without warning
 - **Bug fixes, tasks, and refactors follow the same workflow.** Every work item needs its own tracked item and at least `/qa` and `/security` — no skipping for "small fixes"
 - **If a prerequisite is missing:** Tell the user what's missing and suggest the correct skill. Example: "This feature doesn't have a tech design yet. Run `/architecture features/PROJ-X-name.md` first."
