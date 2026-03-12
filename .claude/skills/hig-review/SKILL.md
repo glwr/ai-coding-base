@@ -130,8 +130,21 @@ Add a brief HIG Review section to the feature spec file:
 **Recommendation:** Fix critical/high findings | Ready for submission
 ```
 
-### Step 3: Create Bug Entries for Critical/High Findings
-For each Critical or High severity finding, read `.claude/skills/tracking-guide.md` and follow the instructions to create a bug entry.
+### Step 3: Create Bug Entries for ALL Findings
+For EVERY finding (all severities — Critical, High, Medium, and Low):
+1. Read `features/INDEX.md` to find the "Next Bug ID: BUG-X" counter
+2. Read `.claude/skills/tracking-guide.md` for tracking operations (variant detection: File-based or GitHub Issues)
+3. Create a bug file in `backlog/BUG-X-name.md` using `backlog/bug-template.md`
+   - Set Source to `/hig-review` and link the related feature
+4. If Tracking = GitHub Issues, create a GitHub Issue:
+   ```bash
+   gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --body "[description, HIG section, guideline reference, fix suggestion]"
+   ```
+5. Add the bug to the Backlog table in `features/INDEX.md` (include issue link if GitHub Issues)
+6. Increment the "Next Bug ID" counter in `features/INDEX.md`
+7. If a finding is immediately fixed in the same session, set status to Fixed/Done and close the GitHub Issue
+
+**IMPORTANT:** Process findings sequentially — read the "Next Bug ID" counter fresh before each finding to avoid ID collisions.
 
 ### Step 4: Git Commit
 ```

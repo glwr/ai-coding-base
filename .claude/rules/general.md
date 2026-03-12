@@ -80,7 +80,7 @@ The ONLY code files exempt from this rule are:
   - No `/release` without QA passed (no Critical/High bugs)
   - No `/security` without implementation to audit
 - **`/design-review` is optional but recommended** after `/frontend` or `/apple-ui`. Requires a running app (dev server or simulator). If skipped, proceed without warning
-- **`/simplify` is optional but recommended.** If the user skips it, proceed to `/qa` without warning
+- **`/simplify` is a built-in Claude Code skill (no SKILL.md needed) — optional but recommended.** If the user skips it, proceed to `/qa` without warning
 - **Bug fixes, tasks, and refactors follow the same workflow.** Every work item needs its own tracked item and at least `/qa` and `/security` — no skipping for "small fixes"
 - **If a prerequisite is missing:** Tell the user what's missing and suggest the correct skill. Example: "This feature doesn't have a tech design yet. Run `/architecture features/PROJ-X-name.md` first."
 - **If the user asks to do something out of order:** Warn them once, explain the risk, but allow it if they explicitly confirm

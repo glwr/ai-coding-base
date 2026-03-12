@@ -5,6 +5,8 @@ model: sonnet
 maxTurns: 30
 tools:
   - Read
+  - Write
+  - Edit
   - Glob
   - Grep
   - Bash
@@ -96,6 +98,24 @@ After all findings:
 ```
 
 If no issues found, explicitly state: "No issues found. Code is clear."
+
+## CRITICAL: Bug Tracking Workflow
+
+For EVERY finding you discover (all severities — Critical, High, Medium, and Low), you MUST create full tracking artifacts:
+
+1. **Read `features/INDEX.md`** to find the "Next Bug ID: BUG-X" counter
+2. **Read `CLAUDE.md`** Tech Stack → `Tracking` field to determine variant (File-based or GitHub Issues)
+3. **Create backlog detail file** `backlog/BUG-X-short-name.md` using `backlog/bug-template.md`
+   - Set Source to `/hig-review` or `/swift-review` and link the related feature
+4. **If Tracking = GitHub Issues**, create a GitHub Issue:
+   ```bash
+   gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --body "[description, category, risk, fix suggestion]"
+   ```
+5. **Add row to `features/INDEX.md`** Backlog table (include issue link if GitHub Issues)
+6. **Increment "Next Bug ID"** counter in `features/INDEX.md`
+
+If you find multiple findings, process them sequentially — read the counter fresh each time to avoid ID collisions.
+If a finding is immediately fixed in the same session, create tracking as Fixed/Done and close the GitHub Issue.
 
 ## Memory Instructions
 

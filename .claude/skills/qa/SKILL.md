@@ -71,12 +71,21 @@ Verify existing features still work:
 - Add QA Test Results section to the feature spec file (NOT a separate file)
 - Use the template from [test-template.md](test-template.md)
 
-### 5b. Create Bug Entries for Critical/High Bugs
-For each Critical or High severity bug found:
-1. Read `.claude/skills/tracking-guide.md` for tracking operations
-2. Create a bug file in `backlog/BUG-X-name.md` using `backlog/bug-template.md`
-3. Add the bug to the Backlog table in `features/INDEX.md`
-4. Set Source to `/qa` and link the related feature
+### 5b. Create Bug Entries for ALL Bugs Found
+For EVERY bug found (all severities — Critical, High, Medium, and Low):
+1. Read `features/INDEX.md` to find the "Next Bug ID: BUG-X" counter
+2. Read `.claude/skills/tracking-guide.md` for tracking operations (variant detection: File-based or GitHub Issues)
+3. Create a bug file in `backlog/BUG-X-name.md` using `backlog/bug-template.md`
+4. If Tracking = GitHub Issues, create a GitHub Issue:
+   ```bash
+   gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --body "[description, steps to reproduce, expected vs actual]"
+   ```
+5. Add the bug to the Backlog table in `features/INDEX.md` (include issue link if GitHub Issues)
+6. Increment the "Next Bug ID" counter in `features/INDEX.md`
+7. Set Source to `/qa` and link the related feature
+8. If a bug is immediately fixed in the same session, set status to Fixed/Done and close the GitHub Issue
+
+**IMPORTANT:** Process bugs sequentially — read the "Next Bug ID" counter fresh before each bug to avoid ID collisions (parallel QA runs can cause duplicates otherwise).
 
 ### 6. User Review
 Present test results with clear summary:

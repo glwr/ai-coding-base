@@ -130,6 +130,21 @@ Present the summary to the user:
 **If report only:**
 - Save findings to `reports/design/YYYY-MM-DD-scope.md`
 
+### Phase 6: Create Bug Entries for Unfixed Findings
+For EVERY finding that was NOT fixed (all severities — Critical, High, Medium, and Low):
+1. Read `features/INDEX.md` to find the "Next Bug ID: BUG-X" counter
+2. Read `.claude/skills/tracking-guide.md` for tracking operations (variant detection: File-based or GitHub Issues)
+3. Create a bug file in `backlog/BUG-X-name.md` using `backlog/bug-template.md`
+   - Set Source to `/design-review` and link the related feature
+4. If Tracking = GitHub Issues, create a GitHub Issue:
+   ```bash
+   gh issue create --title "BUG-X: [title]" --label "type:bug,priority:pX,status:open" --body "[description, design token violated, expected vs actual, fix suggestion]"
+   ```
+5. Add the bug to the Backlog table in `features/INDEX.md` (include issue link if GitHub Issues)
+6. Increment the "Next Bug ID" counter in `features/INDEX.md`
+
+**IMPORTANT:** Process findings sequentially — read the "Next Bug ID" counter fresh before each finding to avoid ID collisions.
+
 ## After Completion
 
 > "Design review complete. [X findings fixed / Y remaining].

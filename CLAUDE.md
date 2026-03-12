@@ -105,7 +105,7 @@ reports/               Audit reports (same as above)
 4. `/frontend` - Build UI components
 5. `/backend` - Build APIs, database, access control
 6. `/design-review` - Visual review via screenshots against design-system.md (optional, recommended)
-7. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+7. `/simplify` - Review code for quality, reuse, and efficiency (built-in Claude Code skill, optional, recommended)
 8. `/qa` - Test against acceptance criteria
 9. `/security` - OWASP security audit + vulnerability scan
 10. `/release` - Pre-release checks, documentation sync, git tag, CI/CD verification, status updates
@@ -117,7 +117,7 @@ reports/               Audit reports (same as above)
 4. `/apple-ui` - Build SwiftUI views and navigation
 5. `/apple-data` - Build data models, persistence, networking
 6. `/design-review` - Visual review via screenshots against design-system.md (optional, recommended)
-7. `/simplify` - Review code for quality, reuse, and efficiency (optional, recommended)
+7. `/simplify` - Review code for quality, reuse, and efficiency (built-in Claude Code skill, optional, recommended)
 8. `/qa` - Test against acceptance criteria (simulator + accessibility)
 9. `/security` - Security audit (OWASP + Apple platform security)
 10. `/hig-review` - Human Interface Guidelines compliance review
